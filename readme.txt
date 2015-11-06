@@ -93,6 +93,9 @@ No questions...
 
 == Changelog ==
 
+= 1.4.0.2 =
+Ajax render fix...
+
 = 1.4.0.0 =
 Serious update affected the structure functions API, ofomrleniya settings menu. Functional podchti not changed.
 

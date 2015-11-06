@@ -18,7 +18,7 @@ class hiweb_console {
 
     public function __construct($info = null){
         if(!is_null($info)) $this->info($info);
-        add_action('shutdown', array($this,'echo_footer'),10);
+        if(!hiweb()->wp()->is_ajax()) {add_action('shutdown', array($this,'echo_footer'),10);}
     }
 
     /**
