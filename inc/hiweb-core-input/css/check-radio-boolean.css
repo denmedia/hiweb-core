@@ -1,0 +1,558 @@
+
+
+.hiweb-input-boolean {
+    height: 25px;
+    line-height: 25px;
+    display: inline-block
+}
+
+.hiweb-input-boolean label {
+    height: inherit;
+    display: block
+}
+
+.hiweb-input-boolean input[type=radio], .hiweb-input-boolean input[type=checkbox] {
+    display: none
+}
+
+.hiweb-input-boolean i {
+    float: left;
+    width: 55px;
+    height: 25px;
+    margin-right: 5px;
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+    background: rgba(0, 0, 0, .3)
+}
+
+.hiweb-input-boolean[data-style=radio] i, .hiweb-input-boolean[data-style=check] i {
+    width: 25px
+}
+
+.hiweb-input-boolean i:after, .hiweb-input-boolean i:before {
+    content: '';
+    position: absolute
+}
+
+.hiweb-input-boolean i:before {
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+    width: 21px;
+    height: 21px;
+    background: #eee;
+    transition: all .2s ease-in-out 0s
+}
+
+.hiweb-input-boolean input:checked + label i {
+    background: #2196f3
+}
+
+.hiweb-input-boolean input:checked + label i:before {
+    left: 32px
+}
+
+.hiweb-input-boolean[data-style=radio] i:before {
+    background: #ddd;
+    border: 2px solid transparent
+}
+
+.hiweb-input-boolean[data-style=radio] input:checked + label i:before {
+    border-color: #fff;
+    background: #2196f3;
+    left: 2px !important
+}
+
+.hiweb-input-boolean[data-style=check] i {
+    background: #ddd;
+    border: 2px solid #7f8c8d;
+    border: 2px solid rgba(0, 0, 0, .2)
+}
+
+.hiweb-input-boolean[data-style=check] i:after, .hiweb-input-boolean[data-style=check] i:before {
+    width: 0;
+    background: 0 0;
+    border-right: 2px solid transparent
+}
+
+.hiweb-input-boolean[data-style=check] i:before {
+    top: 10px;
+    left: 7px;
+    height: 6px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg)
+}
+
+.hiweb-input-boolean[data-style=check] i:after {
+    top: 5px;
+    padding: 0 !important;
+    left: 12px !important;
+    height: 12px !important;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transition: all .2s ease-in-out 0s
+}
+
+.hiweb-input-boolean[data-style=check] input:checked + label i:after, .hiweb-input-boolean[data-style=check] input:checked + label i:before {
+    border-color: #fff
+}
+
+.hiweb-input-boolean[data-style=check] input:checked + label i:before {
+    left: 7px
+}
+
+.hiweb-input-boolean[data-align=right] i {
+    float: right;
+    margin-right: 0;
+    margin-left: 5px
+}
+
+.hiweb-input-boolean[data-text=true] i:after {
+    left: 22px;
+    color: #eee;
+    height: 25px;
+    content: 'Off';
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 25px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .8);
+    transition: all .2s ease-in-out 0s
+}
+
+.hiweb-input-boolean[data-text=true] input:checked + label i:after {
+    left: 0;
+    content: 'On'
+}
+
+.hiweb-input-boolean[data-style=radio] i:after, .hiweb-input-boolean[data-style=radio] input:checked + label i:after, .hiweb-input-boolean[data-style=check] i:after, .hiweb-input-boolean[data-style=check] input:checked + label i:after {
+    content: ''
+}
+
+.hiweb-input-boolean[data-radius=true] i {
+    border-radius: 25px
+}
+
+.hiweb-input-boolean[data-radius=true] i:before {
+    border-radius: inherit
+}
+
+.hiweb-input-boolean input:disabled + label {
+    color: #888;
+    cursor: not-allowed
+}
+
+.hiweb-input-boolean input:disabled + label i {
+    background: #ccc
+}
+
+.hiweb-input-boolean input:disabled + label i:after {
+    color: #ddd
+}
+
+.hiweb-input-boolean[data-style=check] input:disabled + label i {
+    background: #ddd;
+    border-color: #ccc
+}
+
+.hiweb-input-boolean[data-size="2"] {
+    height: 30px;
+    line-height: 30px
+}
+
+.hiweb-input-boolean[data-size="2"] label i {
+    width: 60px;
+    height: inherit
+}
+
+.hiweb-input-boolean[data-size="2"][data-style=radio] label i, .hiweb-input-boolean[data-size="2"][data-style=check] label i {
+    width: 30px
+}
+
+.hiweb-input-boolean[data-size="2"] label i:after {
+    left: 28px;
+    height: inherit;
+    line-height: 30px
+}
+
+.hiweb-input-boolean[data-size="2"] label i:before {
+    width: 26px;
+    height: 26px
+}
+
+.hiweb-input-boolean[data-size="2"][data-style=check] label i:before {
+    width: 0;
+    height: 7px
+}
+
+.hiweb-input-boolean[data-size="2"][data-style=check] label i:after {
+    top: 5px;
+    left: 15px !important;
+    height: 15px !important
+}
+
+.hiweb-input-boolean[data-size="2"][data-style=check] input:checked + label i:before, .hiweb-input-boolean[data-size="2"][data-style=check] label i:before {
+    top: 12px;
+    left: 8px;
+    border-radius: 0
+}
+
+.hiweb-input-boolean[data-size="2"] label i[data-after-check]:before, .hiweb-input-boolean[data-size="2"] label i[data-before-check]:before {
+    line-height: 26px
+}
+
+.hiweb-input-boolean[data-size="2"][data-style=radio] input:checked + label i[data-after-check]:before, .hiweb-input-boolean[data-size="2"][data-style=radio] input:checked + label i[data-before-check]:before, .hiweb-input-boolean[data-size="2"][data-style=check] input:checked + label i[data-after-check]:before, .hiweb-input-boolean[data-size="2"][data-style=check] input:checked + label i[data-before-check]:before {
+    left: 2px
+}
+
+.hiweb-input-boolean[data-size="2"][data-style=check] label i[data-after-check]:before, .hiweb-input-boolean[data-size="2"][data-style=check] label i[data-before-check]:before {
+    width: inherit
+}
+
+.hiweb-input-boolean[data-size="3"] {
+    height: 40px;
+    line-height: 40px
+}
+
+.hiweb-input-boolean[data-size="3"] label i {
+    width: 80px;
+    height: inherit
+}
+
+.hiweb-input-boolean[data-size="3"][data-style=radio] label i, .hiweb-input-boolean[data-size="3"][data-style=check] label i {
+    width: 40px
+}
+
+.hiweb-input-boolean[data-size="3"] input:checked + label i:before {
+    left: 42px
+}
+
+.hiweb-input-boolean[data-size="3"] label i:after {
+    left: 42px;
+    font-size: 16px;
+    height: inherit;
+    line-height: 40px
+}
+
+.hiweb-input-boolean[data-size="3"] label i:before {
+    width: 36px;
+    height: 36px
+}
+
+.hiweb-input-boolean[data-size="3"][data-style=check] label i:before {
+    width: 0;
+    height: 7px
+}
+
+.hiweb-input-boolean[data-size="3"][data-style=check] label i:after {
+    top: 10px;
+    left: 21px !important;
+    height: 20px !important
+}
+
+.hiweb-input-boolean[data-size="3"][data-style=check] input:checked + label i:before, .hiweb-input-boolean[data-size="3"][data-style=check] label i:before {
+    top: 20px;
+    left: 12px;
+    border-radius: 0
+}
+
+.hiweb-input-boolean[data-size="3"] label i[data-after-check]:before, .hiweb-input-boolean[data-size="3"] label i[data-before-check]:before {
+    font-size: 24px;
+    line-height: 36px
+}
+
+.hiweb-input-boolean[data-size="3"][data-style=radio] input:checked + label i[data-after-check]:before, .hiweb-input-boolean[data-size="3"][data-style=radio] input:checked + label i[data-before-check]:before, .hiweb-input-boolean[data-size="3"][data-style=check] input:checked + label i[data-after-check]:before, .hiweb-input-boolean[data-size="3"][data-style=check] input:checked + label i[data-before-check]:before {
+    left: 2px
+}
+
+.hiweb-input-boolean[data-size="3"][data-style=check] label i[data-after-check]:before, .hiweb-input-boolean[data-size="3"][data-style=check] label i[data-before-check]:before {
+    width: inherit
+}
+
+.hiweb-input-boolean i[data-after-check]:after, .hiweb-input-boolean i[data-after-check]:before, .hiweb-input-boolean i[data-before-check]:after, .hiweb-input-boolean i[data-before-check]:before {
+    border: none
+}
+
+.hiweb-input-boolean i[data-before-check]:before {
+    color: #7f8c8d;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+    font-family: FontAwesome;
+    content: attr(data-before-check)
+}
+
+.hiweb-input-boolean input:checked + label i[data-after-check]:before {
+    color: #fff;
+    background: rgba(0, 0, 0, .1);
+    content: attr(data-after-check)
+}
+
+.hiweb-input-boolean[data-style=check] input:checked + label i[data-after-check]:before {
+    height: 100%;
+    background: 0 0 !important
+}
+
+.hiweb-input-boolean[data-style=check] i[data-before-check]:before {
+    width: inherit;
+    height: inherit;
+    line-height: 25px;
+    top: -2px !important;
+    left: -2px !important
+}
+
+.hiweb-input-boolean[data-color] input:disabled + label i:after {
+    color: rgba(0, 0, 0, .3)
+}
+
+.hiweb-input-boolean[data-color] i[data-before-check]:before {
+    color: #fff;
+    background: rgba(255, 255, 255, .2)
+}
+
+.hiweb-input-boolean[data-color=red] i {
+    background: rgba(243, 66, 53, .6)
+}
+
+.hiweb-input-boolean[data-color=red] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=red] input:checked + label i:before {
+    background: rgba(243, 66, 53, 1)
+}
+
+.hiweb-input-boolean[data-color=red] input:disabled + label i {
+    background: rgba(243, 66, 53, .4)
+}
+
+.hiweb-input-boolean[data-color=pink] i {
+    background: rgba(233, 30, 99, .6)
+}
+
+.hiweb-input-boolean[data-color=pink] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=pink] input:checked + label i:before {
+    background: rgba(233, 30, 99, 1)
+}
+
+.hiweb-input-boolean[data-color=pink] input:disabled + label i {
+    background: rgba(233, 30, 99, .4)
+}
+
+.hiweb-input-boolean[data-color=black] i {
+    background: rgba(54, 63, 69, .6)
+}
+
+.hiweb-input-boolean[data-color=black] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=black] input:checked + label i:before {
+    background: rgba(54, 63, 69, 1)
+}
+
+.hiweb-input-boolean[data-color=black] input:disabled + label i {
+    background: rgba(54, 63, 69, .4)
+}
+
+.hiweb-input-boolean[data-color=purple] i {
+    background: rgba(156, 39, 176, .6)
+}
+
+.hiweb-input-boolean[data-color=purple] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=purple] input:checked + label i:before {
+    background: rgba(156, 39, 176, 1)
+}
+
+.hiweb-input-boolean[data-color=purple] input:disabled + label i {
+    background: rgba(156, 39, 176, .4)
+}
+
+.hiweb-input-boolean[data-color=deep-purple] i {
+    background: rgba(103, 58, 183, .6)
+}
+
+.hiweb-input-boolean[data-color=deep-purple] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=deep-purple] input:checked + label i:before {
+    background: rgba(103, 58, 183, 1)
+}
+
+.hiweb-input-boolean[data-color=deep-purple] input:disabled + label i {
+    background: rgba(103, 58, 183, .4)
+}
+
+.hiweb-input-boolean[data-color=indigo] i {
+    background: rgba(63, 81, 181, .6)
+}
+
+.hiweb-input-boolean[data-color=indigo] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=indigo] input:checked + label i:before {
+    background: rgba(63, 81, 181, 1)
+}
+
+.hiweb-input-boolean[data-color=indigo] input:disabled + label i {
+    background: rgba(63, 81, 181, .4)
+}
+
+.hiweb-input-boolean[data-color=blue] i {
+    background: rgba(32, 149, 242, .6)
+}
+
+.hiweb-input-boolean[data-color=blue] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=blue] input:checked + label i:before {
+    background: rgba(32, 149, 242, 1)
+}
+
+.hiweb-input-boolean[data-color=blue] input:disabled + label i {
+    background: rgba(32, 149, 242, .4)
+}
+
+.hiweb-input-boolean[data-color=light-blue] i {
+    background: rgba(169, 169, 169, .6)
+}
+
+.hiweb-input-boolean[data-color=light-blue] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=light-blue] input:checked + label i:before {
+    background: rgba(3, 169, 244, 1)
+}
+
+.hiweb-input-boolean[data-color=light-blue] input:disabled + label i {
+    background: rgba(3, 169, 244, .4)
+}
+
+.hiweb-input-boolean[data-color=cyan] i {
+    background: rgba(0, 188, 212, .6)
+}
+
+.hiweb-input-boolean[data-color=cyan] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=cyan] input:checked + label i:before {
+    background: rgba(0, 188, 212, 1)
+}
+
+.hiweb-input-boolean[data-color=cyan] input:disabled + label i {
+    background: rgba(0, 188, 212, .4)
+}
+
+.hiweb-input-boolean[data-color=teal] i {
+    background: rgba(0, 149, 135, .6)
+}
+
+.hiweb-input-boolean[data-color=teal] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=teal] input:checked + label i:before {
+    background: rgba(0, 149, 135, 1)
+}
+
+.hiweb-input-boolean[data-color=teal] input:disabled + label i {
+    background: rgba(0, 149, 135, .4)
+}
+
+.hiweb-input-boolean[data-color=green] i {
+    background: rgba(76, 175, 80, .6)
+}
+
+.hiweb-input-boolean[data-color=green] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=green] input:checked + label i:before {
+    background: rgba(76, 175, 80, 1)
+}
+
+.hiweb-input-boolean[data-color=green] input:disabled + label i {
+    background: rgba(76, 175, 80, .4)
+}
+
+.hiweb-input-boolean[data-color=light-green] i {
+    background: rgba(139, 195, 74, .6)
+}
+
+.hiweb-input-boolean[data-color=light-green] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=light-green] input:checked + label i:before {
+    background: rgba(139, 195, 74, 1)
+}
+
+.hiweb-input-boolean[data-color=light-green] input:disabled + label i {
+    background: rgba(139, 195, 74, .4)
+}
+
+.hiweb-input-boolean[data-color=lime] i {
+    background: rgba(205, 220, 57, .6)
+}
+
+.hiweb-input-boolean[data-color=lime] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=lime] input:checked + label i:before {
+    background: rgba(205, 220, 57, 1)
+}
+
+.hiweb-input-boolean[data-color=lime] input:disabled + label i {
+    background: rgba(205, 220, 57, .4)
+}
+
+.hiweb-input-boolean[data-color=yellow] i {
+    background: rgba(255, 235, 59, .6)
+}
+
+.hiweb-input-boolean[data-color=yellow] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=yellow] input:checked + label i:before {
+    background: rgba(255, 235, 59, 1)
+}
+
+.hiweb-input-boolean[data-color=yellow] input:disabled + label i {
+    background: rgba(255, 235, 59, .4)
+}
+
+.hiweb-input-boolean[data-color=amber] i {
+    background: rgba(255, 193, 7, .6)
+}
+
+.hiweb-input-boolean[data-color=amber] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=amber] input:checked + label i:before {
+    background: rgba(255, 193, 7, 1)
+}
+
+.hiweb-input-boolean[data-color=amber] input:disabled + label i {
+    background: rgba(255, 193, 7, .4)
+}
+
+.hiweb-input-boolean[data-color=orange] i {
+    background: rgba(255, 152, 0, .6)
+}
+
+.hiweb-input-boolean[data-color=orange] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=orange] input:checked + label i:before {
+    background: rgba(255, 152, 0, 1)
+}
+
+.hiweb-input-boolean[data-color=orange] input:disabled + label i {
+    background: rgba(255, 152, 0, .4)
+}
+
+.hiweb-input-boolean[data-color=deep-orange] i {
+    background: rgba(255, 87, 34, .6)
+}
+
+.hiweb-input-boolean[data-color=deep-orange] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=deep-orange] input:checked + label i:before {
+    background: rgba(255, 87, 34, 1)
+}
+
+.hiweb-input-boolean[data-color=deep-orange] input:disabled + label i {
+    background: rgba(255, 87, 34, .4)
+}
+
+.hiweb-input-boolean[data-color=brown] i {
+    background: rgba(121, 85, 72, .6)
+}
+
+.hiweb-input-boolean[data-color=brown] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=brown] input:checked + label i:before {
+    background: rgba(121, 85, 72, 1)
+}
+
+.hiweb-input-boolean[data-color=brown] input:disabled + label i {
+    background: rgba(121, 85, 72, .4)
+}
+
+.hiweb-input-boolean[data-color=grey] i {
+    background: rgba(158, 158, 158, .6)
+}
+
+.hiweb-input-boolean[data-color=grey] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=grey] input:checked + label i:before {
+    background: rgba(158, 158, 158, 1)
+}
+
+.hiweb-input-boolean[data-color=grey] input:disabled + label i {
+    background: rgba(158, 158, 158, .4)
+}
+
+.hiweb-input-boolean[data-color=blue-grey] i {
+    background: rgba(96, 125, 139, .6)
+}
+
+.hiweb-input-boolean[data-color=blue-grey] input:checked + label i, .hiweb-input-boolean[data-style=radio][data-color=blue-grey] input:checked + label i:before {
+    background: rgba(96, 125, 139, 1)
+}
+
+.hiweb-input-boolean[data-color=blue-grey] input:disabled + label i {
+    background: rgba(96, 125, 139, .4)
+}

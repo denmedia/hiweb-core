@@ -1,0 +1,5 @@
+.hiweb-core-wizard-helpPoint { cursor: help; }
+.hiweb-core-wizard-helpPoint-content { display: none; }
+
+.hiweb-core-wizard-helpPointImage { max-width: 50%; }
+.hiweb-core-wizard-helpPointImage .qtip-content { padding: 5px; }

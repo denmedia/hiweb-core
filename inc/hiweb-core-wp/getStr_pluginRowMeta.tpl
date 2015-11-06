@@ -1,0 +1,1 @@
+<div style="font-size: 90%;color: #a1a1a1">{$plugin_file}</div>

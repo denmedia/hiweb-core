@@ -1,0 +1,17 @@
+.hiweb-core-plugins-groups a[data-group-selected] { text-decoration: underline; }
+
+/*.hiweb-settings-plugins tr { display: block; }*/
+.hiweb-settings-plugins tr[data-active="0"] th[scope="row"] { border-left-color: #92c2d1; }
+.hiweb-settings-plugins tr[data-active="1"] th[scope="row"] { border-left-color: #009900; }
+.hiweb-settings-plugins tr[data-process="1"] { opacity: 0.25; background-color: #cccccc; }
+.hiweb-settings-plugins tr[data-process="1"] div.row-actions { display: none; }
+.hiweb-settings-plugins tr[data-update=""] th[scope="row"] { border-left-color: #ff9000; }
+
+.hiweb-settings-plugins td.plugin-image { width: 100px; height: 100px; background: #eeeeee url(img/plug_ico_2.png) 50% 0 no-repeat; box-sizing: border-box; -moz-box-sizing: border-box; }
+.hiweb-settings-plugins tr.active[data-active="0"]  td.plugin-image { background-image: url(img/plug_ico_3.png); }
+.hiweb-settings-plugins tr.active[data-active="1"]  td.plugin-image { background-image: url(img/plug_ico_1.png); }
+.hiweb-settings-plugins tr[data-group-hide="1"] { display: none; }
+
+@media screen and (max-width: 782px){
+    .hiweb-settings-plugins tbody td.plugin-image { display: none; }
+}

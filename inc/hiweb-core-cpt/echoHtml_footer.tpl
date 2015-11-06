@@ -1,0 +1,1 @@
+<script>jQuery('.menu-top.menu-icon-{$slug} .dashicons-before').addClass('{$menu_icon}');</script>

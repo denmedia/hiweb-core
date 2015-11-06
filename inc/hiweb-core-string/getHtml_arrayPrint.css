@@ -1,0 +1,5 @@
+.hiweb-string-printarr { position: relative; z-index: 9999; font-size: 11px; text-align: left; margin: 0; padding: 5px 10px 5px 15px; background: #eeeeee; }
+.hiweb-string-printarr li { margin-bottom: 5px; vertical-align: top; }
+.hiweb-string-printarr [data-key] { font-weight: bold; color: #0044cc; font-style: italic; text-decoration: underline; vertical-align: top;}
+.hiweb-string-printarr-gettype { color: #919B9C; font-style: italic; }
+.hiweb-string-printarr .hiweb-string-printarr { display: inline-block; margin-left: 15px; padding: 1px; vertical-align: top; }

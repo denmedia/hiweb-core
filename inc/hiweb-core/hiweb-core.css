@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'hiweb-core';
+    src:url('../../css/fonts/hiweb-core.eot?-qqvbq8');
+    src:url('../../css/fonts/hiweb-core.eot?#iefix-qqvbq8') format('embedded-opentype'),
+    url('../../css/fonts/hiweb-core.woff?-qqvbq8') format('woff'),
+    url('../../css/fonts/hiweb-core.ttf?-qqvbq8') format('truetype'),
+    url('../../css/fonts/hiweb-core.svg?-qqvbq8#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.nav-tab { cursor: pointer; }
+.nav-tab-place > div { display: none; }
+.nav-tab-place > div:first-child { display: block; }
+
+

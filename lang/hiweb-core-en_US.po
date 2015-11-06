@@ -1,0 +1,671 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: hiweb-core\n"
+"POT-Creation-Date: 2015-09-26 20:36+0300\n"
+"PO-Revision-Date: 2015-09-26 20:37+0300\n"
+"Last-Translator: DenMedia <info@hiweb.moscow>\n"
+"Language-Team: hiWeb <info@hiweb.moscow>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: --sort-by-file\n"
+"X-Poedit-SearchPath-0: hiweb-core\n"
+"X-Poedit-SearchPath-1: hiweb-plugins-server\n"
+
+#: hiweb-core/inc/hiweb-core-cpt/class-hiwebcptadmin.php:12
+msgid "SuperCPT"
+msgstr "SuperCPT"
+
+#: hiweb-core/inc/hiweb-core-cpt/class-hiwebcptadmin.php:17
+msgid "You do not have sufficient permissions to access this page."
+msgstr "You do not have sufficient permissions to access this page."
+
+#: hiweb-core/inc/hiweb-core-cpt/class-hiwebcptmeta.php:524
+msgid "Uploaded image:"
+msgstr "Uploaded image:"
+
+#: hiweb-core/inc/hiweb-core-cpt/class-hiwebcptmeta.php:527
+msgid "Uploaded file:"
+msgstr "Uploaded file:"
+
+#: hiweb-core/inc/hiweb-core-cpt/class-hiwebcptmeta.php:530
+msgid "Remove"
+msgstr "Remove"
+
+#: hiweb-core/inc/hiweb-core-cpt/class-hiwebcptmeta.php:545
+#, php-format
+msgid "Set %s"
+msgstr "Set %s"
+
+#: hiweb-core/inc/hiweb-core-input.php:31
+#: hiweb-core/inc/hiweb-core-plugins.php:108
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:82
+#: hiweb-core/inc/hiweb-core-wp_settings.php:84
+msgid "Настройки"
+msgstr "Settings"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:83
+#: hiweb-core/inc/hiweb-core-wp_settings.php:85
+msgid "Плагины и Ассеты"
+msgstr "Plugins & Assets"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:88
+msgid "Опции WP"
+msgstr "Options of WP"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:104
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsSettings.tpl:1
+msgid "настройки"
+msgstr "settings"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:105
+msgid "плагины"
+msgstr "plugins"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:111
+msgid "Заголовок страницы"
+msgstr "Post/Page title"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:140
+msgid "Menus"
+msgstr "Menus"
+
+#: hiweb-core/inc/hiweb-core-wp_settings.php:149
+msgid "Widgets"
+msgstr "Widgets"
+
+#: hiweb-plugins-server/inc/hiweb-plugins-server-class.php:50
+msgid "http://"
+msgstr "http://"
+
+#: hiweb-core\inc\hiweb-core-input\getHtml_options.tpl:23
+msgid "Включить"
+msgstr "Enable"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:1
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsSettings.tpl:1
+msgid "Установка плагинов"
+msgstr "Extract my plugins"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:1
+msgid ""
+"В этой панеле список плагинов, которые можно скачать и установить прямо из "
+"данной панели."
+msgstr ""
+"In this panel a list of plugins that you can download and install directly "
+"from the panel."
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:5
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:5
+msgid "Поиск по названию"
+msgstr "Search by name"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:5
+msgid ""
+"Введи несколько символов в поле для быстрого поиска плагинов по названию"
+msgstr "Type a few characters into the field for a quick search plugin by name"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:7
+msgid "Группы плагинов"
+msgstr "Groups"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:7
+msgid "Выберите группу для более удобного поиска в списке Ваших плагинов"
+msgstr "Select a group for easier search the list of your plug-ins"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:8
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:8
+msgid "Все"
+msgstr "All"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:15
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:81
+msgid "Выберите массовое действие"
+msgstr "Select batch action"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:16
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:82
+msgid "Действия"
+msgstr "Actions"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:17
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:83
+msgid "Скачать и Активировать"
+msgstr "Download and Activate"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:18
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:84
+msgid "Скачать / Обновить"
+msgstr "Download / Update"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:19
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:63
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:85
+msgid "Активировать"
+msgstr "Activate"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:20
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:59
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:61
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:86
+msgid "Деактивировать"
+msgstr "Deactivate"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:21
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:63
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:87
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:38
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:40
+msgid "Удалить"
+msgstr "Delete"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:23
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:89
+msgid "Применить"
+msgstr "Apply"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:26
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:92
+msgid "элементов"
+msgstr "elements"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:35
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:15
+msgid ""
+"Репозиторий пуст, или сервер не доступен<br>Введите адрес сервера с "
+"плагинами..."
+msgstr ""
+"Repository is empty, or the server is not available<br>Enter the address of "
+"the server with plug-ins ..."
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:40
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:45
+msgid "Выделить все"
+msgstr "Select All"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:40
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:45
+msgid "Плагин"
+msgstr "Plugin"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:40
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:45
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:20
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:25
+msgid "Описание"
+msgstr "Description"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:50
+msgid "Выбрать"
+msgstr "Select"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:57
+msgid "Скачать и активировать"
+msgstr "Download and activate"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:57
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:36
+msgid "Скачать"
+msgstr "Download"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:59
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:38
+msgid "Обновить"
+msgstr "Refresh"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:59
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:61
+msgid "Деактивировать и удалить"
+msgstr "Deactivate and remove"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsRepository.tpl:69
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:46
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:23
+msgid "Версия"
+msgstr "Version"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_pluginsSettings.tpl:1
+msgid "В этой панеле настраивается репозиторий плагинов."
+msgstr "This panel is configured repository plug-ins, scripts and assets."
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:1
+msgid "Установка скриптов и ассетов"
+msgstr "Installation scripts and assets"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:1
+msgid ""
+"В этой панеле список скриптов и ассетов, которые можно скачать и установить "
+"прямо из данной панели."
+msgstr ""
+"In this panel a list of scripts and assets list, which can be downloaded and "
+"installed directly from the panel."
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:7
+msgid "Группы скриптов"
+msgstr "Groups"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:20
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:25
+msgid "Скрипты"
+msgstr "Scripts"
+
+#: hiweb-core\inc\hiweb-core-plugins\getHtml_scriptsRepository.tpl:46
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:23
+msgid "Размер"
+msgstr "Size"
+
+#: hiweb-core\inc\hiweb-core-settings\getHtml_CMSAdminMenu.tpl:16
+msgid "Отметьте, чтобы показать данный пункт для текущего пользователя"
+msgstr "Select to show this item for the current user"
+
+#: hiweb-core\inc\hiweb-core-settings\getHtml_CMSAdminMenu.tpl:17
+msgid "Кастомное имя меню"
+msgstr "Custom menu name"
+
+#: hiweb-core\inc\hiweb-core-settings\getHtml_CMSAdminMenu.tpl:25
+msgid "Сохранить изменения"
+msgstr "Save changes"
+
+#: hiweb-core\inc\hiweb-core-settings\getHtml_CMSAdminMenu.tpl:26
+msgid "Все изменения сохранены!"
+msgstr "All changes have been saved!"
+
+#: hiweb-core\inc\hiweb-core-settings\getHtml_settingsDashboard.tpl:1
+msgid "Настройки Админ-панели"
+msgstr "Admin-menu settings"
+
+#: hiweb-core\inc\hiweb-core-settings\getHtml_settingsDashboard.tpl:2
+msgid "Настройки админ-панели, отображения пунктов меню, редактора постов"
+msgstr "Settings of admin-menu, items of admin-menu and post edit"
+
+#: hiweb-plugins-server\tpl\getHtml_pluginsToRepository.tpl:1
+msgid "Размещение плагинов в репозитории"
+msgstr "Placement plug-ins in the repository"
+
+#: hiweb-plugins-server\tpl\getHtml_pluginsToRepository.tpl:1
+msgid ""
+"В данной панеле необходимо выбрать плагины для архивации (размещения их в "
+"репозитории)."
+msgstr ""
+"This panel must be selected for backup plugins (placing them in the "
+"repository)."
+
+#: hiweb-plugins-server\tpl\getHtml_pluginsToRepository.tpl:9
+msgid "Репозиторий пуст, или сервер не доступен"
+msgstr "Repository is empty, or the server is not available"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:1
+msgid "Размещение скриптов и ассетов в репозитории"
+msgstr "Placement scripts and assets list in the repository"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:1
+msgid ""
+"В данной панеле необходимо выбрать ассеты для архивации (размещения их в "
+"репозитории)."
+msgstr ""
+"This panel must be selected for archiving Asset (placing them in the "
+"repository)."
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:9
+msgid "Папка ассетов пуста"
+msgstr "Asset dir is empty"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:18
+msgid "Редактировать название скрипта / ассета"
+msgstr "Edit the name of the script / asset"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:19
+msgid "Группа скрипта / ассета"
+msgstr "Group script / Asset"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:19
+msgid "Редактировать группу скрипта / ассета"
+msgstr "Edit the script/asseta group"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:22
+msgid "Редактировать описание скрипта / ассета"
+msgstr "Edit the script/asseta description"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:23
+msgid "Редактировать версию скрипта / ассета"
+msgstr "Edit version of the script / Asset"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:23
+msgid "Редактировать домашний сайт скрипта / ассета"
+msgstr "Edit home site script / Asset"
+
+#: hiweb-plugins-server\tpl\getHtml_scriptsRepository.tpl:31
+msgid "Архивировать ассеты / скрипты в репозиторий"
+msgstr "Asset Archive / scripts in the repository"
+
+#: hiweb-core\inc\hiweb-core-builder.php:18
+msgid "Название таба"
+msgstr "Tab name"
+
+#: hiweb-core\inc\hiweb-core-builder.php:18
+msgid "Содержимое таба"
+msgstr "Tab content"
+
+#: hiweb-core\inc\hiweb-core-plugins.php:22
+msgid "Сервер репозитория"
+msgstr "Repository server"
+
+#: hiweb-core\inc\hiweb-core-plugins.php:23
+msgid ""
+"Введите Ваш сервер репозитория, например <b>myrepositoryserver.com</b> с "
+"установленным и активированным плагином <b>hiWeb Plugins Server</b>.<br>С "
+"данного сервера будут браться плагины и скрипты."
+msgstr ""
+"Enter your server repository, such as <b>myrepositoryserver.com</b> with the "
+"installed and activated the plugin <b>hiWeb Plugins Server</b>. <br> From "
+"this server will be taken plugins and scripts."
+
+#: hiweb-core\inc\hiweb-core-plugins.php:75
+msgid "Мои Плагины"
+msgstr "My Plug-ins"
+
+#: hiweb-core\inc\hiweb-core-plugins.php:76
+msgid "Мои Скрипты и Ассеты"
+msgstr "My Scripts and Assets"
+
+#: hiweb-core\inc\hiweb-core-plugins.php:77
+msgid "Настройки моего сервера"
+msgstr "Settings of my server"
+
+#: hiweb-core\inc\hiweb-core-settings.php:17
+msgid "Перенос сайта"
+msgstr "Site migration"
+
+#: hiweb-core\inc\hiweb-core-settings.php:21
+msgid "Быстрый перенос сайта на новый хостинг/домен"
+msgstr "Quick migrate a site to a new hosting/domain"
+
+#: hiweb-core\inc\hiweb-core-settings.php:21
+#: hiweb-core\inc\hiweb-core-settings.php:22
+msgid ""
+"Для миграции сайта перенесите все файлы и базу данных сайта на новый сервер. "
+"Данная функция автоматически заменит и обновит URL сайта и быстрые ссылки на "
+"посты/страницы."
+msgstr ""
+"To migrate a site, move all the files and the site database to a new server. "
+"This function automatically replaces and updates the site URL and quick "
+"links to posts/pages."
+
+#: hiweb-core\inc\hiweb-core-settings.php:22
+msgid ""
+"Автоматически менять базовый URL сайта, если путь до базовой папки изменился."
+"<br>Текущая папка:"
+msgstr ""
+"Automatically change the base URL of your site, if the path to the base "
+"directory has changed.<br>Current folder:"
+
+#: hiweb-core\inc\hiweb-core-settings.php:24
+msgid "Пункты админ-меню"
+msgstr "Admin-menu items"
+
+#: hiweb-core\inc\hiweb-core-settings.php:28
+#: hiweb-core\inc\hiweb-core-settings.php:34
+msgid "Внешний вид"
+msgstr "Appearance"
+
+#: hiweb-core\inc\hiweb-core-settings.php:28
+msgid "Меню"
+msgstr "Menus"
+
+#: hiweb-core\inc\hiweb-core-settings.php:29
+msgid ""
+"Добавляет пункт в админ-меню, позволяющий редактировать меню в шаблоне. Так "
+"же отображать этот пункт в сразу админ-панеле"
+msgstr ""
+"Adds an item in the admin menu to edit menu in the template. Just display "
+"the item directly in the admin panel"
+
+#: hiweb-core\inc\hiweb-core-settings.php:34
+msgid "Виджеты"
+msgstr "Widgets"
+
+#: hiweb-core\inc\hiweb-core-settings.php:35
+msgid ""
+"Добавляет пункт в админ-меню, позволяющий редактировать виджеты в шаблоне. "
+"Так же отображать этот пункт в сразу админ-панеле"
+msgstr ""
+"Adds an item in the admin menu to edit widgets in a template. Just display "
+"the item directly in the admin panel"
+
+#: hiweb-core\inc\hiweb-core-settings.php:40
+msgid "Админ меню"
+msgstr "Admin menu"
+
+#: hiweb-core\inc\hiweb-core-settings.php:40
+msgid "Опции"
+msgstr "Options"
+
+#: hiweb-core\inc\hiweb-core-settings.php:41
+msgid ""
+"Добавляет пункт в админ-меню, позволяющий редактировать основные настройки "
+"WordPress'а. Так же отображать этот пункт в сразу админ-панеле."
+msgstr ""
+"Adds an item in the admin menu to edit the basic settings WordPress. Just "
+"display the item directly in the admin panel."
+
+#: hiweb-core\inc\hiweb-core-settings.php:43
+msgid "Редактор постов/страниц"
+msgstr "Posts/Pages editor"
+
+#: hiweb-core\inc\hiweb-core-settings.php:47
+#: hiweb-core\inc\hiweb-core-settings.php:53
+#: hiweb-core\inc\hiweb-core-settings.php:59
+#: hiweb-core\inc\hiweb-core-settings.php:65
+msgid "Записи"
+msgstr "Posts"
+
+#: hiweb-core\inc\hiweb-core-settings.php:47
+msgid "Использовать кустомный титл"
+msgstr "Use custome title"
+
+#: hiweb-core\inc\hiweb-core-settings.php:48
+msgid ""
+"Добавить возможность указывать кустомный титл для записи/странички. В PHP "
+"шаблоне использовать так: <code>&lt;?php the_title(); ?&gt;</code>"
+msgstr ""
+"Enable set custom title for post/page. Use in PHP teplate that: <code>&lt;?"
+"php the_title(); ?&gt;</code>"
+
+#: hiweb-core\inc\hiweb-core-settings.php:53
+msgid "Поддержка миниатюры"
+msgstr "Thumbnails support"
+
+#: hiweb-core\inc\hiweb-core-settings.php:54
+msgid "Включить возомжность загружать для поста/странички миниатюру"
+msgstr "Enable support upload thumbnail for post/page"
+
+#: hiweb-core\inc\hiweb-core-settings.php:59
+msgid "Поддержка кустомных типов записей"
+msgstr "Support extend post types"
+
+#: hiweb-core\inc\hiweb-core-settings.php:60
+msgid "Включить поддержку всех типов записей."
+msgstr "Enable support all types of posts"
+
+#: hiweb-core\inc\hiweb-core-settings.php:60
+#: hiweb-core\inc\hiweb-core-settings.php:101
+msgid "Узнать больше"
+msgstr "More"
+
+#: hiweb-core\inc\hiweb-core-settings.php:65
+msgid "Таксономии"
+msgstr "Taxonomies"
+
+#: hiweb-core\inc\hiweb-core-settings.php:65
+msgid "Скрывать облако частоиспользуемых тегов"
+msgstr "Hide tag cloud chastoispolzuemyh"
+
+#: hiweb-core\inc\hiweb-core-settings.php:66
+msgid ""
+"В разделе рубрик часто формируется облако популярных категорий, которые "
+"мешают нормальному восприятию формы. Этот пункт скрывает данное облако."
+msgstr ""
+"The section headings often shaped cloud of popular categories, which "
+"interfere with the normal perception of form. This option hides this cloud."
+
+#: hiweb-core\inc\hiweb-core-settings.php:69
+msgid "Преобразование символов"
+msgstr "Symbols convert"
+
+#: hiweb-core\inc\hiweb-core-settings.php:73
+msgid "Преобразование имен файлов в латинницу"
+msgstr "Convert file names to latin-symbols"
+
+#: hiweb-core\inc\hiweb-core-settings.php:74
+msgid ""
+"Преобразовывать кирилицу и прочие недопустимые символы в названии "
+"загружаемых файлов в латинские буквы."
+msgstr ""
+"Convert Cyrillic and other invalid characters in the name of the "
+"downloadable files in the letters."
+
+#: hiweb-core\inc\hiweb-core-settings.php:79
+msgid "Преобразование ЧПУ"
+msgstr "URL Conversion"
+
+#: hiweb-core\inc\hiweb-core-settings.php:80
+msgid ""
+"Преобразовывать кирилицу и прочие недопустимые символы ЧПУ постов и "
+"страничек в латинские буквы."
+msgstr ""
+"Convert Cyrillic and other illegal characters of URL posts and pages in "
+"Latin letters."
+
+#: hiweb-core\inc\hiweb-core-settings.php:83
+msgid "Прочие параметры WP"
+msgstr "Others WP settings"
+
+#: hiweb-core\inc\hiweb-core-settings.php:87
+msgid "Медиафайлы"
+msgstr "Media files"
+
+#: hiweb-core\inc\hiweb-core-settings.php:87
+msgid "Расширенный список типов файлов"
+msgstr "Extended list of file types"
+
+#: hiweb-core\inc\hiweb-core-settings.php:88
+msgid "Данный пункт позволяет загружать более расширенный список типов файлов"
+msgstr "This item allows you to load more extensive list of file types"
+
+#: hiweb-core\inc\hiweb-core-settings.php:93
+#: hiweb-plugins-server\inc\hiweb-plugins-server-class.php:65
+msgid "Плагины"
+msgstr "Plugins"
+
+#: hiweb-core\inc\hiweb-core-settings.php:93
+msgid "Отображение пути до файла PHP"
+msgstr "Displays the path to the PHP file"
+
+#: hiweb-core\inc\hiweb-core-settings.php:94
+msgid "Добавляет информативную строчку о файле для каждого из плагинов."
+msgstr "Adds informative line of the file for each of the plug-ins."
+
+#: hiweb-core\inc\hiweb-core-settings.php:100
+msgid "Тег"
+msgstr "Tag"
+
+#: hiweb-core\inc\hiweb-core-settings.php:101
+msgid "Указывать в шапке тэг &lt;BASE&gt;, указывающий на корень сайта."
+msgstr ""
+"Indicate in the header tag &lt;BASE&gt;, indicating the root of the site."
+
+#: hiweb-core\inc\hiweb-core-settings.php:106
+msgid "Скрипт для всех страничек"
+msgstr "Script for all pages of site"
+
+#: hiweb-core\inc\hiweb-core-settings.php:106
+msgid ""
+"Используйте данное поле для ввода JavaScript, который необходимо разместить "
+"на всех страничках сайта, исключая админ-панель, например: Google Analytics, "
+"Яндекс.Метрика"
+msgstr ""
+"Use this field to enter the JavaScript, which should be placed on all pages "
+"of the site except the admin panel, for example: Google Analytics, Yandeks."
+"Metrika"
+
+#: hiweb-core\inc\hiweb-core-settings.php:107
+msgid ""
+"Сквозной HTML-код и скрипт счетчиков, отображаемый на всех страничках сайта. "
+"Данный скрипт будет выводиться в области футера."
+msgstr ""
+"Script for all pages of site, exclude admin panel. This script will be "
+"displayed in the footer."
+
+#: hiweb-core\inc\hiweb-core-settings.php:122
+msgid "Основные настройки админки"
+msgstr "Main admin settings"
+
+#: hiweb-core\inc\hiweb-core-settings.php:122
+msgid ""
+"Основные настройки, управление дополнительными элементами админ-меню, "
+"дополнения для администратора"
+msgstr ""
+"Basic configuration management with additional elements admin menu additions "
+"for the administrator"
+
+#: hiweb-core\inc\hiweb-core-settings.php:123
+msgid "Админ меню для ролей"
+msgstr "Roles admin-menu"
+
+#: hiweb-core\inc\hiweb-core-settings.php:123
+msgid "Управление пунктами админ меню, относительно ролей пользователей"
+msgstr "Managing admin menu items relative to user roles"
+
+#: hiweb-core\inc\hiweb-core-settings.php:124
+msgid "Админ меню для пользователей"
+msgstr "Users admin-menu"
+
+#: hiweb-core\inc\hiweb-core-settings.php:124
+msgid "Управление пунктами админ меню, относительно пользователей"
+msgstr "Managing admin menu items, with respect to users"
+
+#: hiweb-core\inc\hiweb-core-settings.php:210
+msgid "По умолчанию"
+msgstr "Default"
+
+#: hiweb-core\inc\hiweb-core-settings.php:213
+msgid "Не показывать"
+msgstr "Hide"
+
+#: hiweb-core\inc\hiweb-core-settings.php:216
+msgid "Произвольный"
+msgstr "Custom"
+
+#: hiweb-core\inc\hiweb-core-settings.php:218
+msgid "Введите произвольный заголовок"
+msgstr "Enter custom title"
+
+#: hiweb-plugins-server\inc\hiweb-plugins-server-class.php:66
+msgid "Срипты и Ассеты"
+msgstr "Scripts & Assets"
+
+#~ msgid "Репозиторий"
+#~ msgstr "Repository"
+
+#~ msgid " пуст"
+#~ msgstr "is empty"
+
+#~ msgid "Кустомное имя меню"
+#~ msgstr "Custom menu name"
+
+#~ msgid "Выберите группу для боле удобного поиска в списке Ваших плагинов"
+#~ msgstr "Select the group to Bole easily search the list of your plug-ins"
+
+#~ msgid "Админ меню для групп"
+#~ msgstr "Roles admin-menu"
+
+#~ msgid "Плагины / Ассеты"
+#~ msgstr "Plugins / Assets"
