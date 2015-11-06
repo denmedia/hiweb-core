@@ -55,24 +55,31 @@ hiweb()->console()
 Displays information counter in the console browser.
 
 Example:
- 1. `hiweb()->console('My console message');`
- 2. `hiweb()->console()->warn('Warning message');`
- 3. `hiweb()->console()->error('Error message');`
- 4. `hiweb()->console()->info(array(1,2, 'foo' => 'bar'));`
+```php
+hiweb()->console('My console message');
+hiweb()->console()->warn('Warning message');
+hiweb()->console()->error('Error message');
+hiweb()->console()->info(array(1,2, 'foo' => 'bar'));
+```
 
 hiweb()->print_r()
 ------------------
 Print arrays, objects and other vars in to screen
 
 Example:
- 1. `hiweb()->print_r(array(1,2, 'foo' => 'bar'))`
+```php
+ hiweb()->print_r(array(1,2, 'foo' => 'bar'))
+```
 
 hiweb()->file()
 ---------------
 Class for working with the file system
 
 Example:
- 1. `hiweb()->file()->js('my-script')` - Search for a file with the specified name on the file PHP, where the function was called js (). The same function will search in subfolders there, naprmier folder 'js'. In this case, the file 'my-script.js' will be searched next to the original PHP, in the folder 'js/my-script.js', just try to determine the name of the file PHP, to use it in the search , as well as the name and function class , from which the function was called `hiweb()->file()->js()` ...
+```php
+hiweb()->file()->js('my-script')
+```
+Search for a file with the specified name on the file PHP, where the function was called js (). The same function will search in subfolders there, naprmier folder 'js'. In this case, the file 'my-script.js' will be searched next to the original PHP, in the folder 'js/my-script.js', just try to determine the name of the file PHP, to use it in the search , as well as the name and function class , from which the function was called `hiweb()->file()->js()` ...
 
 
 Installation
