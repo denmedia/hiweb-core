@@ -1,4 +1,4 @@
-hiWeb Core v1.4.1.0
+hiWeb Core v1.4.1.1
 ===================
 
 ### [!!!Dont forget about WiKi!!!](https://github.com/hiweb-moscow/hiweb-core/wiki)

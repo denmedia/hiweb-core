@@ -95,6 +95,9 @@ No questions...
 
 == Changelog ==
 
+= 1.4.1.1 =
+New AdminMenu Panel
+
 = 1.4.1.0 =
 A system file cache, faster operations Plugin more than 10 times.
 
