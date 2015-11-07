@@ -46,8 +46,6 @@
                         <th>{$a.name|tpl}</th>
                         <td valign="top">
                             {if isset($a.html)}{$a.html}{/if}
-                            {if $a.label != ''}<label for="{$id}">{$a.label}</label>{/if}
-                            <p>{$a.description|tpl}</p>
                         </td>
                     </tr>
                 {/if}

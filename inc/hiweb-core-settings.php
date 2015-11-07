@@ -181,6 +181,7 @@ class hiweb_settings {
             $table[$menu[2]] = array(
                 'name' => $menu[0],
                 'mode' => hiweb()->input()->getHtml_field( $idEscape.'_mode', array(
+                    'name' => 'Режим пункта: ',
                     'type' => 'select',
                     'options' => array(
                         'show' => 'Всегда показывать',
@@ -193,24 +194,26 @@ class hiweb_settings {
                         'hide_only_user' => 'Скрывать только пользователям'
                     )) ),
                 'users' => hiweb()->input()->getHtml_field( $idEscape.'_users', array(
+                    'name' => 'Пользователи:',
                     'type' => 'users',
-                    /*'display' => array(
+                    'display' => array(
                         array(
-                            'id' => hiweb()->string()->getStr_allowSymbols($menu[2].'_mode'),
+                            'id' => $idEscape.'_mode',
                             'operator' => '==',
                             'value' => array('show_role_hide_user','show_user_hide_role','show_only_user','hide_only_user')
                         )
-                    )*/
+                    )
                 ) ),
                 'roles' => hiweb()->input()->getHtml_field( $idEscape.'_roles', array(
+                    'name' => 'Роли:',
                     'type' => 'roles',
-                    /*'display' => array(
+                    'display' => array(
                         array(
-                            'id' => hiweb()->string()->getStr_allowSymbols($menu[2].'_mode'),
+                            'id' => $idEscape.'_mode',
                             'operator' => '==',
                             'value' => array('show_role_hide_user','show_user_hide_role','show_only_role','hide_only_role')
                         )
-                    )*/
+                    )
                 ) )
             );
         }
@@ -219,11 +222,15 @@ class hiweb_settings {
 
     /**
      * Внести изменения админменю
+     *
+     * @version 2.0
      */
     public function do_cms_adminmenu_change(){
         global $user_ID, $menu;
         hiweb()->settings()->def_cms_adminmenu = $menu;
-        if(is_array(get_option(hiweb()->settings()->option_cms_adminmenu_name,false))){
+
+        hiweb()->console( get_option(hiweb()->settings()->option_cms_adminmenu_name,false) );
+        /*if(is_array(get_option(hiweb()->settings()->option_cms_adminmenu_name,false))){
             $hiweb_settings_cms_adminmenu_options = get_option(hiweb()->settings()->option_cms_adminmenu_name, array());
             $hiweb_settings_cms_adminmenu_options_cuser = $hiweb_settings_cms_adminmenu_options[$user_ID];
             foreach($menu as $k => $m){
@@ -235,7 +242,7 @@ class hiweb_settings {
                     }
                 }
             }
-        }
+        }*/
     }
 
 

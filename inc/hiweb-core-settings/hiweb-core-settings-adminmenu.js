@@ -5,42 +5,28 @@
 jQuery(document).ready(function(){
 
     ////hiweb_cms_adminmenu
-    jQuery('.hiweb-core-settings-adminmenu-table [data-enable]').change(function(){
-        var cuser = jQuery('#hiweb-core-settings-adminmenu-currentuser').val();
-        var b = jQuery(this).prop('checked');
-        var id = jQuery(this).closest('[data-cell]').attr('data-adminmenu-id');
-        var user = jQuery(this).closest('[data-cell]').attr('data-user-login');
-        ///
-        if(user == cuser){
-            if(!b) { jQuery('#'+id+'').hide(); }
-            else { jQuery('#'+id+'').show(); }
-        }
-    }).each(function(){
-        var cuser = jQuery('#hiweb-core-settings-adminmenu-currentuser').val();
-        var b = jQuery(this).prop('checked');
-        var id = jQuery(this).closest('[data-cell]').attr('data-adminmenu-id');
-        var user = jQuery(this).closest('[data-cell]').attr('data-user-login');
-        ///
-        if(user == cuser){
-            if(!b) { jQuery('#'+id+'').hide(); }
-            else { jQuery('#'+id+'').show(); }
+    jQuery('.hiweb-core-settings-adminmenu-table tr').on('mouseover mouseout', function(e){
+        var t = jQuery(this);
+        if(t.is('[data-menu-slug]')) {
+            var slug = t.attr('data-menu-slug');
+            var menuA = jQuery('a[href="'+slug+'"]');
+            ///HightLight
+            if(e.type == 'mouseover' ) menuA.parent().addClass('hiweb-core-settings-adminmenu-hightlight');
+            else menuA.parent().removeClass('hiweb-core-settings-adminmenu-hightlight');
+            //jQuery('a[href="'+slug+'"]').closest('li').trigger(e.type);
+            ///
         }
     });
-    jQuery('.hiweb-core-settings-adminmenu-table [data-text]').keyup(function(){
-        var text = jQuery(this).val();
-        var cuser = jQuery('#hiweb-core-settings-adminmenu-currentuser').val();
-        var id = jQuery(this).closest('[data-cell]').attr('data-adminmenu-id');
-        var user = jQuery(this).closest('[data-cell]').attr('data-user-login');
-        ///
-        if(user == cuser){
-            var wp_menu = jQuery('#'+id+' .wp-menu-name');
-            if(text != '') {
-                var child = wp_menu.children();
-                if( child.length > 0 ) wp_menu.html(text + ' ').append(child);
-                else wp_menu.html(text);
-            } else { wp_menu.html( jQuery(this).closest('[data-line]').find('[data-adminmenu-name]').html() ); }
-        }
+
+    jQuery('.hiweb-core-settings-adminmenu-table select').on('change', function(){
+        jQuery('.hiweb-core-settings-adminmenu-table tr').each(function(){
+            var tr = jQuery(this);
+            if(tr.is('[data-menu-slug]')){
+                var slug = tr.attr('data-menu-slug');
+            }
+        });
     });
+
     jQuery('#hiweb-core-settings-adminmenu-submit').click(function(){
         jQuery('#hiweb-core-settings-adminmenu-submit').addClass('button-disabled').attr('disable', 'disable');
         var data = {};

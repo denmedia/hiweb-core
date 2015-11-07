@@ -113,8 +113,11 @@ class hiweb_input {
                 $attr['fields'][] = $field;
             } else {
                 if(function_exists('register_setting')) register_setting( 'hiweb-input-options', $id );
-                unset($field['display']);
                 $attr['fields'][$id] = $this->getArr_field($field,$id);
+                ///
+                unset($field['name']);
+                unset($field['display']);
+                ///
                 $attr['fields'][$id]['html'] = $this->getHtml_field($id, $field,$id);
                 $attr['ids'][] = $id;
             }
@@ -178,21 +181,21 @@ class hiweb_input {
     /**
      * Возвращает html поля
      * @param $id - индификатор поля
-     * @param array $fieldArr - массив поля
+     * @param array $field - массив поля
      * @param null $optionsId - индификатор опций
      * @return bool | string
      *
      * @version 1.2
      */
-    public function getHtml_field($id, $fieldArr=array(), $optionsId = null){
+    public function getHtml_field($id, $field=array(), $optionsId = null){
         if(hiweb()->string()->isEmpty($id)) { hiweb()->console()->error('$id имеет пустое значение и тип переменной ['.gettype($id).']',1); return false; }
         ///
-        if(!is_array($fieldArr)) $fieldArr = array();
-        $fieldArr['type'] = hiweb()->getVal_fromArr($fieldArr,'type',$this->def_fieldType);
-        if(method_exists($this,'_'.$fieldArr['type'])) {
-            $field = call_user_func(array($this,'_'.$fieldArr['type']),$id,$fieldArr,$optionsId);
-            return hiweb()->file()->getHtml_fromTpl(array('field' => $field, 'fieldArr' => $fieldArr));
-        } else { hiweb()->console()->error('Неизвестный тип поля ['.$fieldArr['type'].']',1); return false; }
+        if(!is_array($field)) $field = array();
+        $field['type'] = hiweb()->getVal_fromArr($field,'type',$this->def_fieldType);
+        if(method_exists($this,'_'.$field['type'])) {
+            $field['html'] = call_user_func(array($this,'_'.$field['type']),$id,$field,$optionsId);
+            return hiweb()->file()->getHtml_fromTpl(array('field' => $field));
+        } else { hiweb()->console()->error('Неизвестный тип поля ['.$field['type'].']',1); return false; }
     }
 
 

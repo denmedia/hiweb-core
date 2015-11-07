@@ -704,7 +704,7 @@ class hiweb {
      * Удаляет файл кэша
      * @return bool
      */
-    protected function cacheByFileClear(){
+    public function cacheByFileClear(){
         return hiweb()->file()->do_unlinkDir(HIWEB_DIR_CACHE);
         //$cacheFile = HIWEB_DIR_CACHE.DIR_SEPARATOR.$this->_cacheByFileName;
         //if(file_exists($cacheFile)) return @unlink($cacheFile);

@@ -208,12 +208,24 @@ jQuery(document).ready(function(){
             var rule = rules[n];
             var target = jQuery('#'+rule.id);
             target.live('change', function(){
-                console.info();
                 if(target.attr('type') == 'checkbox'){ var targetVal = target.prop('checked') ? 'on' : ''; }
                 else var targetVal = target.val();
-                var eStr = 'targetVal '+rule.operator+' "'+rule.value+'";';
+                if( typeof rule.value == 'object' ){
+                    var eStr = '', result = false;
+                    for(var n2 in rule.value){
+                        eStr = 'targetVal '+rule.operator+' "'+rule.value[n2]+'";'
+                        result = eval(eStr);
+                        if(result) break;
+                    }
+                }
+                else var eStr = 'targetVal '+rule.operator+' "'+rule.value+'";';
                 var result = eval(eStr);
-                if(!result) { t.fadeOut(); } else {t.fadeIn(); }
+                if(t.prop("tagName") == 'TR'){
+                    if(!result) { t.fadeOut(); } else {t.fadeIn(); }
+                } else {
+                    if(!result) { t.slideUp(); } else {t.slideDown(); }
+                }
+
             });
         }
     });

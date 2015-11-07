@@ -479,7 +479,7 @@ class hiweb_wp {
 
 
     /**
-     * Шенерация табов для WP
+     * Генерация табов для WP
      * @param array $tabsArray
      * @return bool
      */
@@ -600,6 +600,8 @@ class hiweb_wp {
 
     /**
      * Произвести смену базовый URL на новый
+     *
+     * @version 1.1
      */
     public function do_changeBaseUrl(){
         global $wpdb;
@@ -615,6 +617,8 @@ class hiweb_wp {
         $wpdb->query($query);
 
         $this->do_flush_rewrite_rules();
+
+        hiweb()->cacheByFileClear();
 
         exit('<h1 style="text-align: center">hiWeb: change `Base URL`. Please wait, page is reload...</h1><script>location.reload();</script>');
     }
