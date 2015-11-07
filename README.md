@@ -1,7 +1,7 @@
 hiWeb Core v1.4.1.0
 ===================
 
-### [Dont forget about WiKi --->](https://github.com/hiweb-moscow/hiweb-core/wiki)
+### [!!!Dont forget about WiKi!!!](https://github.com/hiweb-moscow/hiweb-core/wiki)
 
 
 The plugin allows you to quickly create Web sites on WordPress, immediately unpack and activate the archives of favorite plug-ins, show common adminis-menu items and to migrate seamlessly to new hosting.

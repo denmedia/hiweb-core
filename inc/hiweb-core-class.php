@@ -316,7 +316,7 @@ class hiweb {
      *
      * @return bool
      */
-    function is_function($functionVariable) {
+    public function is_function($functionVariable) {
         return (is_string($functionVariable) && function_exists($functionVariable)) || (is_object($functionVariable) && ($functionVariable instanceof Closure));
     }
 
@@ -326,15 +326,15 @@ class hiweb {
      *
      * @return bool
      */
-    function getBool_isFunction($functionVariable){ return hiweb::is_function($functionVariable); }
+    public function getBool_isFunction($functionVariable){ return hiweb::is_function($functionVariable); }
 
 
     /**
-     * Осуществить редирект на URL
+     * Выводит JavaScript, заставляющий браузер выполнить редирект на указанный URL, или корневой URL сайта
      * @param string $url
      * @param bool $permanent
      */
-    function do_redirect($url = '', $permanent = true){
+    public function do_redirect($url = '', $permanent = true){
         if(trim((string)$url) == '') $url = BASE_URL; header("Location: $url", true, $permanent ? 301 : 302);
         ?>redirect to: <b><?php echo $url; ?></b><script>self.location="<?php echo $url; ?>"; window.location.href="<?php echo $url; ?>"; document.location.href = '<?php echo $url; ?>'; window.location.replace("<?php echo $url; ?>");</script><?php
         die();
@@ -517,7 +517,7 @@ class hiweb {
 
     /**
      * Возвращает путь и строку файла, откуда была запущена функция
-     * @param int $depth - глубина функции
+     * @param int $depth - глубина родительских функций
      * @return string
      *
      * @version 1.1
@@ -547,7 +547,7 @@ class hiweb {
 
 
     /**
-     * Возвращает корневую папку сайта
+     * Возвращает корневую папку сайта. Данная функция автоматически определяет корневую папку сайта, отталкиваясь на поиске папок с файлом index.php
      * @return string
      *
      * @version 1.1
@@ -569,7 +569,7 @@ class hiweb {
     }
 
     /**
-     * Возвращает корневой URL
+     * Возвращает корневой URL сайта, включая тот факт, если сайт лежим в подпапке или на домене 3 уровня
      * @return string
      *
      * @version 1.1
@@ -597,14 +597,14 @@ class hiweb {
 
 
     /**
-     * Отправить почту
+     * Отправляет почту одному или нескольким адресатам
      * @version 1.8
      * @param null $to - адрес ящика, либо 'mail1@mail.ru,mail2@mail.ru...', либо array(mail1@mail.ru, mail2@mail.ru, ...)
      * @param string $theme - тема сообщения
      * @param string $htmlContent - содержимое письма (поддерживает формат HTML)
      * @return bool
      */
-    function do_mail($to=null, $theme='тема письма', $htmlContent='текст сообщения', $from = null)//, $file_patch=''  )
+    function do_mail($to=null, $theme, $htmlContent, $from = null)//, $file_patch=''  )
     {
         if(is_null($to)) return false;
         if(is_string($to) && strpos($to, ',')!==false) { $to = explode(',',$to); }
@@ -641,7 +641,7 @@ class hiweb {
 
 
     /**
-     * Кэширует данные
+     * Кэширует и возвращает данные
      * @param $result
      * @return mixed
      */
