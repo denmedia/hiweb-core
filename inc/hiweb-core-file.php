@@ -703,7 +703,8 @@ class hiweb_file {
      * @version 1.2
      */
     function getStr_pathBySearch($arrFileParts = '', $files = true, $dirs = false, $returnArr = false){
-        if(!is_array($arrFileParts)) { return false; }
+        if(hiweb()->cacheByFileExists()) return hiweb()->cacheByFile();
+        if(!is_array($arrFileParts)) { return hiweb()->cacheByFile(false); }
         $r = array();
         foreach($arrFileParts as $listN => $listVal) {
             $r[$listN] = array();
@@ -720,9 +721,9 @@ class hiweb_file {
             }
         }
         $r = array_unique($r[ count($r)-1 ]);
-        if($returnArr) {return $r;}
-        foreach($r as $path){ if(file_exists($path) && ((is_file($path) && $files) || (is_dir($path) && $dirs))) { return $path; } }
-        return false;
+        if($returnArr) {return hiweb()->cacheByFile($r);}
+        foreach($r as $path){ if(file_exists($path) && ((is_file($path) && $files) || (is_dir($path) && $dirs))) { return hiweb()->cacheByFile($path); } }
+        return hiweb()->cacheByFile(false);
     }
 
 

@@ -17,6 +17,10 @@ class hiweb {
     public $debugMod = false;
 
     private $_cache = array();
+    private $_cacheEnable = true;
+    private $_cacheByFile = null;
+    private $_cacheByFileEnable = true;
+    private $_cacheByFileName = 'cacheByFile.json';
 
     function __construct(){
         if(defined('HIWEB_DIR_CACHE') && !file_exists(HIWEB_DIR_CACHE)) mkdir(HIWEB_DIR_CACHE, 0644);
@@ -642,26 +646,108 @@ class hiweb {
      * @return mixed
      */
     public function cache($result = null){
+        if(!$this->_cacheEnable) return $result;
+        ///
         $dbArr = $this->getArr_debugBacktrace(1,1,0,0,1,1,3,3,'','',1);
         $keyArr = array();
         if(!is_null($this->array2()->getVal($dbArr,array('path',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('path',0));
         if(!is_null($this->array2()->getVal($dbArr,array('className',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('className',0));
         if(!is_null($this->array2()->getVal($dbArr,array('functionName',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('functionName',0));
-        if(!is_null($this->array2()->getVal($dbArr,array('args',0)))) $keyArr[] = json_encode($this->array2()->getVal($dbArr,array('args',0)));
+        if(!is_null($this->array2()->getVal($dbArr,array('args',0)))) $keyArr[] = md5(json_encode($this->array2()->getVal($dbArr,array('args',0))));
         $key = implode(':',$keyArr);
         if(is_null($this->array2()->getVal($this->_cache,$key))) { $this->_cache[$key] = $result; return $result; }
         else { return $this->array2()->getVal($this->_cache,$key); }
     }
 
     public function cacheExists(){
+        if(!$this->_cacheEnable) return false;
+        //
         $dbArr = $this->getArr_debugBacktrace(1,1,0,0,1,1,3,3,'','',1);
         $keyArr = array();
         if(!is_null($this->array2()->getVal($dbArr,array('path',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('path',0));
         if(!is_null($this->array2()->getVal($dbArr,array('className',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('className',0));
         if(!is_null($this->array2()->getVal($dbArr,array('functionName',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('functionName',0));
-        if(!is_null($this->array2()->getVal($dbArr,array('args',0)))) $keyArr[] = json_encode($this->array2()->getVal($dbArr,array('args',0)));
+        if(!is_null($this->array2()->getVal($dbArr,array('args',0)))) $keyArr[] = md5(json_encode($this->array2()->getVal($dbArr,array('args',0))));
         $key = implode(':',$keyArr);
         return !is_null($this->array2()->getVal($this->_cache,$key));
+    }
+
+    /**
+     * Подключить кэш-файл, возвращает путь до файла
+     */
+    private function cacheToFileSetup(){
+        if(!$this->_cacheByFileEnable) return false;
+        ///
+        $cacheFile = HIWEB_DIR_CACHE.DIR_SEPARATOR.$this->_cacheByFileName;
+        if(is_null($this->_cacheByFile)) {
+            if(!file_exists($cacheFile)) { $this->file()->do_foldersAutoCreate(dirname($cacheFile)); file_put_contents($cacheFile, json_encode(array())); }
+            $this->_cacheByFile = $this->file()->getMix_fromJSONFile($cacheFile, array());
+        }
+        return $cacheFile;
+    }
+
+    /**
+     * Сохранить текущие значения в файл
+     * @param null $key - установить ключ значения (не обязат)
+     * @param null $result - установить значение (не обязат)
+     * @return bool
+     */
+    private function cacheByFileSave($key = null, $result = null){
+        if(!$this->_cacheByFileEnable) return false;
+        ///
+        if(!is_null($key) && !is_null($result)) $this->_cacheByFile[$key] = $result;
+        if(!is_null($this->_cacheByFile)) return file_put_contents($this->cacheToFileSetup(), json_encode($this->_cacheByFile));
+        return true;
+    }
+
+    /**
+     * Удаляет файл кэша
+     * @return bool
+     */
+    protected function cacheByFileClear(){
+        return hiweb()->file()->do_unlinkDir(HIWEB_DIR_CACHE);
+        //$cacheFile = HIWEB_DIR_CACHE.DIR_SEPARATOR.$this->_cacheByFileName;
+        //if(file_exists($cacheFile)) return @unlink($cacheFile);
+        //return true;
+    }
+
+    /**
+     * Сохранить в файл / получить из файла значение кэша
+     * @param null $result - установить значение кэша
+     * @return mixed|null
+     */
+    public function cacheByFile($result = null){
+        if(!$this->_cacheByFileEnable) return $result;
+        $this->cacheToFileSetup();
+        ///
+        $dbArr = $this->getArr_debugBacktrace(1,1,0,0,1,1,3,3,'','',1);
+        $keyArr = array();
+        if(!is_null($this->array2()->getVal($dbArr,array('path',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('path',0));
+        if(!is_null($this->array2()->getVal($dbArr,array('className',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('className',0));
+        if(!is_null($this->array2()->getVal($dbArr,array('functionName',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('functionName',0));
+        if(!is_null($this->array2()->getVal($dbArr,array('args',0)))) $keyArr[] = md5(json_encode($this->array2()->getVal($dbArr,array('args',0))));
+        $key = implode(':',$keyArr);
+        if(!is_null($result)) { $this->cacheByFileSave($key, $result); }
+        if(is_null($this->array2()->getVal($this->_cacheByFile,$key))) { return $result; }
+        else { return $this->array2()->getVal($this->_cacheByFile,$key); }
+    }
+
+    /**
+     * Возвращает TRUE, если кэш существует
+     * @return bool
+     */
+    public function cacheByFileExists(){
+        if(!$this->_cacheByFileEnable) return false;
+        $this->cacheToFileSetup();
+        ///
+        $dbArr = $this->getArr_debugBacktrace(1,1,0,0,1,1,3,3,'','',1);
+        $keyArr = array();
+        if(!is_null($this->array2()->getVal($dbArr,array('path',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('path',0));
+        if(!is_null($this->array2()->getVal($dbArr,array('className',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('className',0));
+        if(!is_null($this->array2()->getVal($dbArr,array('functionName',0)))) $keyArr[] = $this->array2()->getVal($dbArr,array('functionName',0));
+        if(!is_null($this->array2()->getVal($dbArr,array('args',0)))) $keyArr[] = md5(json_encode($this->array2()->getVal($dbArr,array('args',0))));
+        $key = implode(':',$keyArr);
+        return !is_null($this->array2()->getVal($this->_cacheByFile,$key));
     }
 
 

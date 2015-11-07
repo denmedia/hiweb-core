@@ -177,9 +177,10 @@ class hiweb_settings {
         $table = array();
         foreach($this->def_cms_adminmenu as $id => $menu){
             if(hiweb()->string()->isEmpty($menu[0])) continue;
+            $idEscape = hiweb()->string()->getStr_allowSymbols($menu[2]);
             $table[$menu[2]] = array(
                 'name' => $menu[0],
-                'mode' => hiweb()->input()->getHtml_field( hiweb()->string()->getStr_allowSymbols($menu[2].'_mode'), array(
+                'mode' => hiweb()->input()->getHtml_field( $idEscape.'_mode', array(
                     'type' => 'select',
                     'options' => array(
                         'show' => 'Всегда показывать',
@@ -191,25 +192,25 @@ class hiweb_settings {
                         'hide_only_role' => 'Скрывать только ролям',
                         'hide_only_user' => 'Скрывать только пользователям'
                     )) ),
-                'users' => hiweb()->input()->getHtml_field( hiweb()->string()->getStr_allowSymbols($menu[2].'_users'), array(
+                'users' => hiweb()->input()->getHtml_field( $idEscape.'_users', array(
                     'type' => 'users',
-                    'display' => array(
+                    /*'display' => array(
                         array(
                             'id' => hiweb()->string()->getStr_allowSymbols($menu[2].'_mode'),
                             'operator' => '==',
                             'value' => array('show_role_hide_user','show_user_hide_role','show_only_user','hide_only_user')
                         )
-                    )
+                    )*/
                 ) ),
-                'roles' => hiweb()->input()->getHtml_field( hiweb()->string()->getStr_allowSymbols($menu[2].'_roles'), array(
+                'roles' => hiweb()->input()->getHtml_field( $idEscape.'_roles', array(
                     'type' => 'roles',
-                    'display' => array(
+                    /*'display' => array(
                         array(
                             'id' => hiweb()->string()->getStr_allowSymbols($menu[2].'_mode'),
                             'operator' => '==',
                             'value' => array('show_role_hide_user','show_user_hide_role','show_only_role','hide_only_role')
                         )
-                    )
+                    )*/
                 ) )
             );
         }

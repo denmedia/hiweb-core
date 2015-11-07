@@ -24,7 +24,6 @@ class hiweb_input {
         'class' => '',
         'display' => array(
             /*array(
-                'do' => 'hide', //hide | show
                 'id' => 'hiweb_cms_title', //element id: input | select | textarea
                 'value' => '', //
                 'operator' => '==' //operator: == | != | > | < ...etc...
@@ -114,8 +113,9 @@ class hiweb_input {
                 $attr['fields'][] = $field;
             } else {
                 if(function_exists('register_setting')) register_setting( 'hiweb-input-options', $id );
+                unset($field['display']);
                 $attr['fields'][$id] = $this->getArr_field($field,$id);
-                $attr['fields'][$id]['html'] = $this->getHtml_field($id, $attr['fields'][$id],$id);
+                $attr['fields'][$id]['html'] = $this->getHtml_field($id, $field,$id);
                 $attr['ids'][] = $id;
             }
         }
@@ -191,11 +191,7 @@ class hiweb_input {
         $fieldArr['type'] = hiweb()->getVal_fromArr($fieldArr,'type',$this->def_fieldType);
         if(method_exists($this,'_'.$fieldArr['type'])) {
             $field = call_user_func(array($this,'_'.$fieldArr['type']),$id,$fieldArr,$optionsId);
-            $trace = hiweb()->array2()->getVal(debug_backtrace(), 1);
-            if(hiweb()->array2()->getVal($trace,'class') == 'hiweb_input' && ( hiweb()->array2()->getVal($trace,'class') == 'getHtml_options' || hiweb()->array2()->getVal($trace,'class') == 'getHtml_fields' ))
-                return $field;
-            else
-                return hiweb()->file()->getHtml_fromTpl(array('field' => $field, 'fieldArr' => $fieldArr));
+            return hiweb()->file()->getHtml_fromTpl(array('field' => $field, 'fieldArr' => $fieldArr));
         } else { hiweb()->console()->error('Неизвестный тип поля ['.$fieldArr['type'].']',1); return false; }
     }
 

@@ -93,6 +93,9 @@ No questions...
 
 == Changelog ==
 
+= 1.4.1.0 =
+A system file cache, faster operations Plugin more than 10 times.
+
 = 1.4.0.2 =
 Ajax render fix...
 
