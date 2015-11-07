@@ -174,14 +174,24 @@ class hiweb_settings {
 
     public function getHtml_CMSAdminMenu(){
         hiweb()->file()->js('hiweb-core-settings-adminmenu');
+        $role = hiweb()->wp()->getStr_currentUserRole();
+        $user_login = get_current_user_id();
         $table = array();
-        foreach($this->def_cms_adminmenu as $id => $menu){
+        $cMenu = get_option(hiweb()->settings()->option_cms_adminmenu_name,false);
+        foreach($this->def_cms_adminmenu as $position => $menu){
             if(hiweb()->string()->isEmpty($menu[0])) continue;
             $idEscape = hiweb()->string()->getStr_allowSymbols($menu[2]);
             $table[$menu[2]] = array(
                 'name' => $menu[0],
+                'rename' => hiweb()->input()->getHtml_field( $idEscape.'_rename', array(
+                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'name')),
+                    'type' => 'text',
+                    'tags' => array('data-type'=>'rename')
+                )),
                 'mode' => hiweb()->input()->getHtml_field( $idEscape.'_mode', array(
+                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'mode')),
                     'name' => 'Режим пункта: ',
+                    'tags' => array('data-type'=>'mode'),
                     'type' => 'select',
                     'options' => array(
                         'show' => 'Всегда показывать',
@@ -194,7 +204,9 @@ class hiweb_settings {
                         'hide_only_user' => 'Скрывать только пользователям'
                     )) ),
                 'users' => hiweb()->input()->getHtml_field( $idEscape.'_users', array(
+                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'users')),
                     'name' => 'Пользователи:',
+                    'tags' => array('data-type'=>'users'),
                     'type' => 'users',
                     'display' => array(
                         array(
@@ -205,7 +217,9 @@ class hiweb_settings {
                     )
                 ) ),
                 'roles' => hiweb()->input()->getHtml_field( $idEscape.'_roles', array(
+                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'roles')),
                     'name' => 'Роли:',
+                    'tags' => array('data-type'=>'roles'),
                     'type' => 'roles',
                     'display' => array(
                         array(
@@ -228,21 +242,47 @@ class hiweb_settings {
     public function do_cms_adminmenu_change(){
         global $user_ID, $menu;
         hiweb()->settings()->def_cms_adminmenu = $menu;
-
-        hiweb()->console( get_option(hiweb()->settings()->option_cms_adminmenu_name,false) );
-        /*if(is_array(get_option(hiweb()->settings()->option_cms_adminmenu_name,false))){
-            $hiweb_settings_cms_adminmenu_options = get_option(hiweb()->settings()->option_cms_adminmenu_name, array());
-            $hiweb_settings_cms_adminmenu_options_cuser = $hiweb_settings_cms_adminmenu_options[$user_ID];
+        $cMenu = get_option(hiweb()->settings()->option_cms_adminmenu_name,false);
+        if(is_array($cMenu)){
+            $cuser = get_current_user_id();
+            $crole = hiweb()->wp()->getStr_currentUserRole();
             foreach($menu as $k => $m){
-                if(isset($hiweb_settings_cms_adminmenu_options_cuser[$m[2]])){
+                $cMenuItem = hiweb()->array2()->getVal($cMenu, $m[2]);
+                if(!is_null($cMenuItem)){
+                    $cMenuItemMod = hiweb()->array2()->getVal($cMenuItem,'mode');
+                    $cMenuItemName = hiweb()->array2()->getVal($cMenuItem,'name');
+                    if(hiweb()->string()->isEmpty($cMenuItemMod)) continue;
+                    ///
+                    $userMath = in_array($cuser, hiweb()->array2()->getArr($cMenuItem,'users'));
+                    $roleMath = in_array($crole, hiweb()->array2()->getArr($cMenuItem,'roles'));
+                    ///
+                    switch($cMenuItemMod){
+                        case 'show': $show = true; break;
+                        case 'hide': $show = false; break;
+                        case 'show_role_hide_user': $show = ($roleMath && !$userMath); break;
+                        case 'show_user_hide_role': $show = (!$roleMath || $userMath); break;
+                        case 'show_only_role': $show = ($roleMath); break;
+                        case 'show_only_user': $show = ($userMath); break;
+                        case 'hide_only_role': $show = (!$roleMath); break;
+                        case 'hide_only_user': $show = (!$userMath); break;
+                        default: $show = true;
+                    }
+                    if(!$show) remove_menu_page( $m[2] );
+                    elseif(!hiweb()->string()->isEmpty($cMenuItemName)) {
+                        $name = explode('<', $m[0]); array_shift($name);
+                        $menu[$k][0] = count($name) > 0 ? $cMenuItemName.' <'.implode('<',$name) : $cMenuItemName;
+
+                    }
+                }
+                /*if(isset($hiweb_settings_cms_adminmenu_options_cuser[$m[2]])){
                     if($hiweb_settings_cms_adminmenu_options_cuser[$m[2]]['enable'] == 'false' && !(in_array(hiweb()->request('page'),array('hiweb-settings','hiweb-settings-2')) && hiweb()->request('tab') == '-lang-admin-menyu-dlya-polzovateley--lang-')) { remove_menu_page( $m[2] ); }
                     elseif(trim($hiweb_settings_cms_adminmenu_options_cuser[$m[2]]['text']) != ''){
                         $name = explode('<', $m[0]); array_shift($name);
                         $menu[$k][0] = count($name) > 0 ? $hiweb_settings_cms_adminmenu_options_cuser[$m[2]]['text'].' <'.implode('<',$name) : $hiweb_settings_cms_adminmenu_options_cuser[$m[2]]['text'];
                     }
-                }
+                }*/
             }
-        }*/
+        }
     }
 
 

@@ -174,6 +174,28 @@ class hiweb_wp {
     }
 
 
+    /**
+     * Returns the translated role of the current user. If that user has
+     * no role for the current blog, it returns false.
+     *
+     * @return string The name of the current role
+     **/
+    public function getStr_currentUserRoleName() {
+        global $wp_roles;
+        $current_user = wp_get_current_user();
+        $roles = $current_user->roles;
+        $role = array_shift($roles);
+        return isset($wp_roles->role_names[$role]) ? translate_user_role($wp_roles->role_names[$role] ) : false;
+    }
+
+    public function getStr_currentUserRole(){
+        global $current_user;
+        $user_roles = $current_user->roles;
+        $user_role = array_shift($user_roles);
+        return $user_role;
+    }
+
+
     public function do_mail($to, $subject, $message, $attachments=array()){
         $r = wp_mail($to, $subject, $message, 'Content-Type: text/html; charset=UTF-8', $attachments);
         return $r;

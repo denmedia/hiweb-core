@@ -46,7 +46,10 @@ jQuery(document).ready(function(){
             autosize: true,
             displayDropdownOnFocus: true,
             placeholder: e.attr('placeholder'),
-            sortable: e.is('data-sortable')
+            sortable: e.is('data-sortable'),
+            onAddToken: function () { e.trigger('change'); },
+            onRemoveToken: function () { e.trigger('change'); },
+            onReorder: function(){ e.trigger('change'); }
         });
     });
 
@@ -226,7 +229,7 @@ jQuery(document).ready(function(){
                     if(!result) { t.slideUp(); } else {t.slideDown(); }
                 }
 
-            });
+            }).trigger('change');
         }
     });
 

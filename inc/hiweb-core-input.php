@@ -191,6 +191,7 @@ class hiweb_input {
         if(hiweb()->string()->isEmpty($id)) { hiweb()->console()->error('$id имеет пустое значение и тип переменной ['.gettype($id).']',1); return false; }
         ///
         if(!is_array($field)) $field = array();
+        $field = $this->getArr_field($field, $optionsId);
         $field['type'] = hiweb()->getVal_fromArr($field,'type',$this->def_fieldType);
         if(method_exists($this,'_'.$field['type'])) {
             $field['html'] = call_user_func(array($this,'_'.$field['type']),$id,$field,$optionsId);

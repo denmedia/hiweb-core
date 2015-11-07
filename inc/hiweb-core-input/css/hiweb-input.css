@@ -4,7 +4,7 @@
 .hiweb-input-field.float-left { float: left; margin: 3px 10px -5px 0; }
 
 .hiweb-input-field i.fa { margin-left: -22px; z-index: 1000; color: #aaa; }
-.hiweb-input-field input[type="text"] { padding-right: 20px; }
+.hiweb-input-field input[type="text"] { padding-right: 20px; width: 100%; }
 
 .selectpicker label { padding-right: 10px; }
 
