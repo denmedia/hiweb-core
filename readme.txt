@@ -19,6 +19,8 @@ Just plug-in allows you to create your own repository of plug-ins and additional
 = WordPress Migration =
 [youtube http://www.youtube.com/watch?v=j1mSDPV9MZ4]
 
+= I recently started to describe the function of the English language: https://github.com/hiweb-moscow/hiweb-core/wiki =
+
 =  =
 
 = Some of the features available through the admin menu interface: =
