@@ -95,6 +95,9 @@ No questions...
 
 == Changelog ==
 
+= 1.4.1.2 =
+Somessmall changes...
+
 = 1.4.1.1 =
 New AdminMenu Panel
 
