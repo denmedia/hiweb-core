@@ -59,7 +59,7 @@ jQuery(document).ready(function(){
                     case 'show': menuItem.show('slow'); break;
                     case 'hide': menuItem.hide('slow'); break;
                     case 'show_role_hide_user': if(roleMatch && !userMath) menuItem.show('slow'); else menuItem.hide('slow'); break;
-                    case 'show_user_hide_role': if(userMath) menuItem.show('slow'); else menuItem.hide('slow'); break;
+                    case 'show_user_hide_role': if(!roleMatch || userMath) menuItem.show('slow'); else menuItem.hide('slow'); break;
                     case 'show_only_role': if(roleMatch) menuItem.show('slow'); else menuItem.hide('slow'); break;
                     case 'show_only_user': if(userMath) menuItem.show('slow'); else menuItem.hide('slow'); break;
                     case 'hide_only_role': if(!roleMatch) menuItem.show('slow'); else menuItem.hide('slow'); break;

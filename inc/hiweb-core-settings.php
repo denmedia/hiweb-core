@@ -186,7 +186,7 @@ class hiweb_settings {
                 'rename' => hiweb()->input()->getHtml_field( $idEscape.'_rename', array(
                     'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'name')),
                     'type' => 'text',
-                    'tags' => array('data-type'=>'rename')
+                    'tags' => array('data-type'=>'rename', 'placeholder' => 'rename item...')
                 )),
                 'mode' => hiweb()->input()->getHtml_field( $idEscape.'_mode', array(
                     'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'mode')),

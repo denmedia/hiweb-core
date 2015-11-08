@@ -156,14 +156,14 @@ class hiweb_file {
      *
      * @return bool|string
      *
-     * @version 1.4
+     * @version 1.5
      */
     public function getStr_cssUrl($cssPath = ''){
         if(hiweb()->cacheExists()) return hiweb()->cache();
         if(!is_string($cssPath) || !file_exists($this->getStr_realPath($cssPath)) || !is_file($cssPath) ){
             $searchArr = array(
                 hiweb()->getArr_debugBacktrace(0,0,0,0,1,0,2,4),
-                array_unique(hiweb()->array2()->merge(array('/','/css/','/style/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
+                array_unique(hiweb()->array2()->merge(array('/','/css/','/style/','/styles/','/template/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
                 hiweb()->array2()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
                 array($cssPath, '-'.$cssPath,'style'),
                 array('','.css')
@@ -359,7 +359,7 @@ class hiweb_file {
     }
 
     /**
-     * Экспорт переменных в файл
+     * Экспортировать переменную в файл в формате JSON
      * @version 1.0.0.1
      * @param $fileName
      * @param null $var
@@ -374,7 +374,7 @@ class hiweb_file {
 
 
     /**
-     * Копирует папки
+     * Копирует папку целиком вместе с вложенными файлами и папками
      * @param $src - исходная папка
      * @param $dst - папка назначения
      * @return bool
@@ -398,7 +398,7 @@ class hiweb_file {
     }
 
     /**
-     * Импорт переменных из файла
+     * Возвращает переменную из файла с JSON данными
      * @version 1.0.0.0
      * @param $fileName - путь до файла
      * @param null $returnDef - вернуть, если файл не будет найден
@@ -412,7 +412,7 @@ class hiweb_file {
     }
 
     /**
-     * Возвращает путь с верными разделителями
+     * Возвращает путь с правильными разделителями
      * @param $path - исходный путь
      * @param bool $removeLastSeparators - удалить самый хвостовой сепаратор
      * @return string | bool
@@ -587,7 +587,7 @@ class hiweb_file {
 
 
     /**
-     * заархивировать папку
+     * Выполняет архивацию папки в ZIP архив
      * @param $pathInput
      * @param string $pathOut
      * @param string $arhiveName
@@ -616,7 +616,7 @@ class hiweb_file {
     }
 
     /**
-     * Рапаковать архив
+     * Распаковывает ZIP архив
      * @param $archivePath
      * @param string $destinationDir
      * @return bool
@@ -728,7 +728,7 @@ class hiweb_file {
 
 
     /**
-     * Сохранить значения в виде отчета в файле, добавляя к предыдущим записям
+     * Записывает данные `$dataMix` в формате HTML в файл. Это удобно для похоже на собственный лог-файл. Этой функцией можно в течении некоторого времени (установленного параметром `$autoDeleteOldFile`) многократно дозаписать информацию в один и тот же файл для дальнейшего анализа. По умолчанию все записывается в файл `log.html` в корне сайта.
      * @param $dataMix - значения
      * @param string $filePath - имя файла дампа
      * @param bool $append - не удалять предыдущие записи
@@ -736,7 +736,7 @@ class hiweb_file {
      *
      * @return int
      */
-    function do_dumpToFile( $dataMix, $filePath = '1.html', $append = true, $autoDeleteOldFile = 5 )
+    function do_dumpToFile( $dataMix, $filePath = 'log.html', $append = true, $autoDeleteOldFile = 5 )
     {
         $filePath = $this->getStr_realPath($filePath);
         if( !file_exists(dirname($filePath)) ) { file_put_contents($this->getStr_realPath('error.txt'), dirname($filePath).' => not exists'); return false;}
@@ -757,6 +757,11 @@ class hiweb_file {
     }
 
 
+    /**
+     * Возвращает расширение файла, уть которого указан в аргументе $path
+     * @param $path
+     * @return string
+     */
     public function getStr_fileExtension($path){
         $pathInfo = pathinfo($path);
         return isset($pathInfo['extension']) ? $pathInfo['extension'] : '';
@@ -777,7 +782,7 @@ class hiweb_file {
                 array($path,''),
                 array('',dirname( hiweb()->array2()->getVal( debug_backtrace(), array(0,'file') ) )),
                 array_merge(array(''), $debugTrace),
-                array(DIR_SEPARATOR.$path,'.tpl','')
+                array(DIR_SEPARATOR.$path,'.json','')
             ),1,0);
             if(is_string($searchFile)) { return $this->getMix_fromJSONFile($searchFile); }
         } else {
@@ -798,7 +803,7 @@ class hiweb_file {
 
 
     /**
-     * Удалить CACHE папку
+     * Удалить HIWEB CACHE папку
      */
     public function do_clearCacheDir(){
         if(file_exists(HIWEB_DIR_CACHE) && is_dir(HIWEB_DIR_CACHE)) $this->do_unlinkDir(HIWEB_DIR_CACHE);
