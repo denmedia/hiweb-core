@@ -16,9 +16,10 @@ class hiweb_wp {
     /**
      * Возвращает TRUE, если текущая страничка логина/регистрации
      * @return bool
+     * @version 2.0
      */
     public function is_login_page() {
-        return in_array( $_SERVER['PHP_SELF'], array( '/wp-login.php', '/wp-register.php' ) );
+        return hiweb()->url()->getArr_requestUri(null, 'dirs', 0) == 'wp-login.php';
     }
 
 
