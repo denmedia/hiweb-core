@@ -13,8 +13,10 @@ class hiweb_url {
 
     /**
      * Возвращает текущий адрес URL
+     *
+     * @version 1.0
      */
-    public function getStr_urlFull(){
+    public function getStr_urlRequestFull(){
         $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
         return rtrim( 'http' . ($https ? 's' : '') . '://' . $_SERVER['HTTP_HOST'],'/').$_SERVER['REQUEST_URI'];
     }
@@ -24,7 +26,7 @@ class hiweb_url {
      * Возвращает корневой URL
      * @return string
      *
-     * @version 1.2
+     * @version 1.3
      */
     public function getStr_baseUrl(){
         if(hiweb()->cacheExists()) return hiweb()->cache();
@@ -36,8 +38,7 @@ class hiweb_url {
         $rootArr = array_reverse($rootArr); $queryArr = array_reverse($queryArr);
         $r = '';
         foreach($queryArr as $dir){ foreach($rootArr as $rootDir) { if($dir == $rootDir) {$r = $dir;break 2;} } }
-        $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-        return hiweb()->cache(rtrim( 'http' . ($https ? 's' : '') . '://' . $_SERVER['HTTP_HOST'].'/'.$r, '/' ));
+        return hiweb()->cache(rtrim( $this->getStr_sheme() . $_SERVER['HTTP_HOST'].'/'.$r, '/' ));
     }
 
     /**
@@ -49,8 +50,8 @@ class hiweb_url {
      *
      * @version 1.2
      */
-    public function getStr_urlQuery($url = null, $addData = array(), $removeKeys = array()){
-        if(is_null($url) || trim($url) == '') $url = $this->getStr_urlFull();
+    public function getStr_urlQueryChange($url = null, $addData = array(), $removeKeys = array()){
+        if(is_null($url) || trim($url) == '') $url = $this->getStr_urlRequestFull();
         $url = explode('?', $url);
         $urlPath = array_shift($url);
         $query = implode('?', $url);
@@ -78,7 +79,7 @@ class hiweb_url {
      * @version 2.0
      */
     public function getArr_requestUri($url = null, $dirsORargs = null, $dirsORargsKey = null){
-        $urlRequest = trim(str_replace($this->getStr_baseUrl(),'',hiweb()->string()->isEmpty($url) ? $this->getStr_urlFull() : $url),'/');
+        $urlRequest = trim(str_replace($this->getStr_baseUrl(),'',hiweb()->string()->isEmpty($url) ? $this->getStr_urlRequestFull() : $url),'/');
         $dirs = array(); $args = array();
         if(strpos($urlRequest,'?')!==false){
             list($dirs,$params) = explode('?', $urlRequest);
@@ -93,6 +94,19 @@ class hiweb_url {
         if(is_null($dirsORargs)) return array('dirs' => explode('/',$dirs), 'query' => $args);
         else if(is_null($dirsORargsKey)) return hiweb()->getVal_fromArr(array('dirs' => explode('/',$dirs), 'query' => $args), $dirsORargs);
         else return hiweb()->getVal_fromArr(array('dirs' => explode('/',$dirs), 'query' => $args), array($dirsORargs,$dirsORargsKey));
+    }
+
+
+    /**
+     * Возвращает протокол URL в виде http:// или https://
+     * @param null $url
+     * @return string
+     *
+     * @version 1.0
+     */
+    public function getStr_sheme($url = null){
+        if(is_null($url) || trim($url) == '') { $url = $this->getStr_urlRequestFull(); }
+        return (strpos($url,'https://')) ? 'https://' : 'http://';
     }
 
 

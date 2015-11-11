@@ -228,7 +228,7 @@ class hiweb_string {
      * @version 1.1
      */
     public function getStr_urlQuery($url = null, $addData = array(), $removeKeys = array()){
-        return hiweb()->url()->getStr_urlQuery($url,$addData,$removeKeys);
+        return hiweb()->url()->getStr_urlQueryChange($url,$addData,$removeKeys);
     }
 
 
