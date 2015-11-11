@@ -95,6 +95,9 @@ No questions...
 
 == Changelog ==
 
+= 1.4.1.3 =
+hiweb()->wp()->isLoginPage() fix
+
 = 1.4.1.2 =
 Somessmall changes...
 

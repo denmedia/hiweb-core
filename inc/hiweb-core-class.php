@@ -30,41 +30,29 @@ class hiweb {
 ////////////////////////////////////////////////////
 
     /**
-     * ВОзвращает класс FILE
-     * return hiweb_file
+     * Подключение класса FILE
+     * @return hiweb_file
      */
-    public function file(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-file.php')) { require_once dirname(__FILE__).'/hiweb-core-file.php'; $class = new hiweb_file(); }
-        return $class;
-    }
+    public function file(){ return $this->connect(); }
 
 
     /**
-     * ВОзвращает класс STRING
-     * return hiweb_string
+     * Подключение класса STRING
+     * @return hiweb_string
      */
-    public function string(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-string.php')) { require_once dirname(__FILE__).'/hiweb-core-string.php'; $class = new hiweb_string(); }
-        return $class;
-    }
+    public function string(){ return $this->connect(); }
 
 
     /**
-     * Возвращает класс INPUT
-     * return hiweb_core_input
+     * Подключение класса INPUT
+     * @return hiweb_input
      */
-    public function input(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-input.php')) { require_once dirname(__FILE__).'/hiweb-core-input.php'; $class = new hiweb_input(); }
-        return $class;
-    }
+    public function input(){ return $this->connect(); }
 
 
     /**
-     * ВОзвращает класс ARRAY
-     * return hiweb_array
+     * Подключение класса ARRAY
+     * @return hiweb_array
      */
     public function array2(){
         static $class = null;
@@ -73,44 +61,30 @@ class hiweb {
     }
 
     /**
-     * ВОзвращает класс Curl
-     * return hiweb_curl
+     * Подключение класса CURL
+     * @return hiweb_curl
      */
-    public function curl(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-curl.php')) { require_once dirname(__FILE__).'/hiweb-core-curl.php'; $class = new hiweb_curl(); }
-        return $class;
-    }
+    //TODO Слить вместе с HIWEB_URL
+    public function curl(){ return $this->connect(); }
 
     /**
-     * ВОзвращает класс Plugins
-     * return hiweb_plugins
+     * Возвращает класс Plugins
+     * @return hiweb_plugins
      */
-    public function plugins(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-plugins.php')) { require_once dirname(__FILE__).'/hiweb-core-plugins.php'; $class = new hiweb_plugins(); }
-        return $class;
-    }
+    //TODO Отправить в HIWEB_CMS
+    public function plugins(){ return $this->connect(); }
 
     /**
-     * ВОзвращает класс SETTINGS
-     * return hiweb_settings
+     * Возвращает класс SETTINGS
+     * @return hiweb_settings
      */
-    public function settings(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-settings.php')) { require_once dirname(__FILE__).'/hiweb-core-settings.php'; $class = new hiweb_settings(); }
-        return $class;
-    }
+    public function settings(){ return $this->connect(); }
 
     /**
-     * ВОзвращает класс FILE
-     * return hiweb_wp
+     * Возвращает класс WP
+     * @return hiweb_wp
      */
-    public function wp(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-wp.php')) { require_once dirname(__FILE__).'/hiweb-core-wp.php'; $class = new hiweb_wp(); }
-        return $class;
-    }
+    public function wp(){ return $this->connect(); }
 
 
     /**
@@ -155,14 +129,10 @@ class hiweb {
     }
 
     /**
-     * Подключение модуля функций shd
+     * Подключение модуля функций SimpleHTMLDom
      * @return hiweb_html_base
      */
-    public function html(){
-        static $class = null;
-        if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-tpl.php')) { require_once dirname(__FILE__).'/hiweb-core-html.php'; $class = new hiweb_wp(); }
-        return $class;
-    }
+    public function html(){ return $this->connect(); }
 
 
     /**
@@ -192,6 +162,7 @@ class hiweb {
     /**
      * @return hiweb_cpt
      */
+    //TODO Перенести в HIWEB_CMS
     public function cpt(){
         return $this->connect();
     }
@@ -207,6 +178,7 @@ class hiweb {
     /**
      * @return hiweb_wp_settings
      */
+    //TODO Перенести в HIWEB_CMS
     public function wp_settings(){
         return $this->connect();
     }
@@ -242,7 +214,7 @@ class hiweb {
      * @param bool $newInstance
      * @return mixed
      *
-     * @splice 1.2
+     * @version 1.2
      */
     private function connect($className = null, $newInstance = false){
         if(is_null($className) || empty($className)) { $className = hiweb()->array2()->getVal($this->getArr_debugBacktrace(0,1,0,0,0,0,3,3),0,'class'); }
