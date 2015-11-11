@@ -18,7 +18,7 @@ class hiweb_console {
 
     public function __construct($info = null){
         if(!is_null($info)) $this->info($info);
-        if(!hiweb()->wp()->is_ajax()) {add_action('shutdown', array($this,'echo_footer'),10);}
+        //if(!hiweb()->wp()->is_ajax()) {add_action('shutdown', array($this,'echo_footer'),10);}
     }
 
     /**
@@ -29,8 +29,8 @@ class hiweb_console {
     public function info($info, $debugMod = false){
         //check call from __construct unction
         $deb = debug_backtrace();
-        $function = hiweb()->array2()->getVal($deb,array(1,'function'));
-        $class = hiweb()->array2()->getVal($deb,array(1,'class'));
+        $function = hiweb()->array()->getVal($deb,array(1,'function'));
+        $class = hiweb()->array()->getVal($deb,array(1,'class'));
         $callFromConstruct = $function == '__construct' && $class == 'hiweb_console';
         //
         $this->_infos[] = $info;

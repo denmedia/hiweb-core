@@ -158,8 +158,8 @@ class hiweb_curl {
         if(!$response) { return false; }
         $headerArr = $this->getArr_headersFromCurl(substr($response, 0, $header_size));
         ///Redirect Way
-        if(in_array(hiweb()->array2()->getVal($headerArr,array('http_code_arr','code')), array(301,302,303)) && $redirectCount > 0){
-            return $this->getArr_contentFromURL(hiweb()->array2()->getVal($headerArr,'location'),$postData,intval($redirectCount)-1);
+        if(in_array(hiweb()->array()->getVal($headerArr,array('http_code_arr','code')), array(301,302,303)) && $redirectCount > 0){
+            return $this->getArr_contentFromURL(hiweb()->array()->getVal($headerArr,'location'),$postData,intval($redirectCount)-1);
         }
         ///Else No Redirect
         $body = substr($response, $header_size);

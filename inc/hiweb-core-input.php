@@ -59,11 +59,11 @@ class hiweb_input {
 
     private function getArrPosts_byTerms($postTypes = null, $postTaxonomies_Terms = null){
         $r = array();
-        $postTypes = hiweb()->array2()->getArr($postTypes);
-        $postTaxonomies_Terms = hiweb()->array2()->getArr($postTaxonomies_Terms);
+        $postTypes = hiweb()->array()->getArr($postTypes);
+        $postTaxonomies_Terms = hiweb()->array()->getArr($postTaxonomies_Terms);
         $args = array('posts_per_page' => -1);
         if(!is_null($postTypes)) { $args['post_type'] = $postTypes; }
-        if(!is_null($postTaxonomies_Terms) && hiweb()->array2()->count($postTaxonomies_Terms) > 0 && hiweb()->array2()->getVal_byIndex($postTaxonomies_Terms,array(0,0)) != '') {
+        if(!is_null($postTaxonomies_Terms) && hiweb()->array()->count($postTaxonomies_Terms) > 0 && hiweb()->array()->getVal_byIndex($postTaxonomies_Terms,array(0,0)) != '') {
             $args['tax_query'] = array('relation' => 'OR');
             foreach($postTaxonomies_Terms as $tax => $terms){
                 $args['tax_query'][] = array(
@@ -159,7 +159,7 @@ class hiweb_input {
      * @return array
      */
     private function getArr_field($field, $getOptVal_byId = null){
-        $field = hiweb()->array2()->mergeRecursive($this->def_field,$field);
+        $field = hiweb()->array()->mergeRecursive($this->def_field,$field);
         $field['type'] = hiweb()->getVal_fromArr($field,'type',$this->def_fieldType);
         ///Options Value
         if(!hiweb()->string()->isEmpty($getOptVal_byId)) $field['value'] = get_option($getOptVal_byId, $field['default']);
@@ -257,7 +257,7 @@ class hiweb_input {
         foreach(get_editable_roles() as $role => $arr){
             $field['options'][$role] = hiweb()->getVal_fromArr($arr,'name','не определена');
         }
-        switch(hiweb()->array2()->getVal($field,'sub_type')){
+        switch(hiweb()->array()->getVal($field,'sub_type')){
             case 'checkboxes': return $this->_checkboxes($id,$field,$optionsId);
             case 'multiselect': return $this->_multiselect($id,$field,$optionsId);
             case 'select': return $this->_select($id,$field,$optionsId);
@@ -272,7 +272,7 @@ class hiweb_input {
         foreach(hiweb()->wp()->getArr_users(null) as $user){
             $field['options'][$user['ID']] = $user['display_name'];
         }
-        switch(hiweb()->array2()->getVal($field,'sub_type')){
+        switch(hiweb()->array()->getVal($field,'sub_type')){
             case 'checkboxes': return $this->_checkboxes($id,$field,$optionsId);
             case 'multiselect': return $this->_multiselect($id,$field,$optionsId);
             case 'select': return $this->_select($id,$field,$optionsId);
@@ -313,7 +313,7 @@ class hiweb_input {
         ));
         $field['options'] = array();
         foreach($allPosts as $p){
-            $field['options'][$p->ID] = trim(get_the_title($p->ID)) == '' ? hiweb()->array2()->getValNext($p, array('post_title','post_name'),'id:'.$p->ID) : get_the_title($p->ID);
+            $field['options'][$p->ID] = trim(get_the_title($p->ID)) == '' ? hiweb()->array()->getValNext($p, array('post_title','post_name'),'id:'.$p->ID) : get_the_title($p->ID);
             //$field['options'][$p->ID] .= ' <em>['.hiweb()->getVal_fromArr($p,'post_type').']</em>';
         }
         return $this->_select($id,$field,$optionsId);
@@ -329,7 +329,7 @@ class hiweb_input {
         ));
         $field['options'] = array();
         foreach($allPosts as $p){
-            $field['options'][$p->ID] = trim(get_the_title($p->ID)) == '' ? hiweb()->array2()->getValNext($p, array('post_title','post_name'),'id:'.$p->ID) : get_the_title($p->ID);
+            $field['options'][$p->ID] = trim(get_the_title($p->ID)) == '' ? hiweb()->array()->getValNext($p, array('post_title','post_name'),'id:'.$p->ID) : get_the_title($p->ID);
             //$field['options'][$p->ID] .= ' <em>['.hiweb()->getVal_fromArr($p,'post_type').']</em>';
         }
         return $this->_select($id,$field,$optionsId);
@@ -345,7 +345,7 @@ class hiweb_input {
         ));
         $field['options'] = array();
         foreach($allPosts as  $p){
-            $field['options'][$p->ID] = trim(get_the_title($p->ID)) == '' ? hiweb()->array2()->getValNext($p, array('post_title','post_name'),'id:'.$p->ID) : get_the_title($p->ID);
+            $field['options'][$p->ID] = trim(get_the_title($p->ID)) == '' ? hiweb()->array()->getValNext($p, array('post_title','post_name'),'id:'.$p->ID) : get_the_title($p->ID);
             //$field['options'][$p->ID] .= ' <em>['.hiweb()->getVal_fromArr($p,'post_type').']</em>';
         }
         return $this->_multiselect($id,$field,$optionsId);
@@ -433,8 +433,8 @@ class hiweb_input {
      */
     public function _terms_posts($id,$field=array(),$optionsId = null){
         $field = $this->getArr_field($field);
-        if(is_null(hiweb()->array2()->getVal($field,'post_type'))) $field['post_type'] = array_keys(get_post_types());
-        if(is_null(hiweb()->array2()->getVal($field,'post_taxonomy'))) $field['post_taxonomy'] = get_object_taxonomies($field['post_type']);
+        if(is_null(hiweb()->array()->getVal($field,'post_type'))) $field['post_type'] = array_keys(get_post_types());
+        if(is_null(hiweb()->array()->getVal($field,'post_taxonomy'))) $field['post_taxonomy'] = get_object_taxonomies($field['post_type']);
         foreach(get_terms($field['post_taxonomy'],array('hide_empty' => false,'childless' => true)) as $t){
             $terms[$t->term_id] = $t;
         }

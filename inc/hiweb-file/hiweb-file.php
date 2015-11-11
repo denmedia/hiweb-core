@@ -56,7 +56,7 @@ class hiweb_file {
         ///CSS register
         foreach($this->_css as $handle => $css){
             unset($this->_css[$handle]);
-            $cssUrl = hiweb()->array2()->getVal($css, 'url');
+            $cssUrl = hiweb()->array()->getVal($css, 'url');
             if(trim((string)$cssUrl)!=''){
                 wp_register_style( $handle, $cssUrl,array(),null );
                 wp_enqueue_style($handle);
@@ -65,17 +65,17 @@ class hiweb_file {
         ///JS register
         foreach($this->_js as $handle => $js){
             unset($this->_js[$handle]);
-            $jsUrl = hiweb()->array2()->getVal($js, 'url');
+            $jsUrl = hiweb()->array()->getVal($js, 'url');
             if(trim((string)$jsUrl)!=''){
-                wp_register_script( $handle, $jsUrl, hiweb()->array2()->getVal($js, 'afterJQuery') ? array('jquery'):null, false, $this->_wp_head );
+                wp_register_script( $handle, $jsUrl, hiweb()->array()->getVal($js, 'afterJQuery') ? array('jquery'):null, false, $this->_wp_head );
                 wp_enqueue_script($handle);
             }
         }
         foreach($this->_js_footer as $handle => $js){
             unset($this->_js_footer[$handle]);
-            $jsUrl = hiweb()->array2()->getVal($js, 'url');
+            $jsUrl = hiweb()->array()->getVal($js, 'url');
             if(trim((string)$jsUrl)!=''){
-                wp_register_script( $handle, $jsUrl, hiweb()->array2()->getVal($js, 'afterJQuery') ? array('jquery'):null, false, true );
+                wp_register_script( $handle, $jsUrl, hiweb()->array()->getVal($js, 'afterJQuery') ? array('jquery'):null, false, true );
                 wp_enqueue_script($handle);
             }
         }
@@ -118,8 +118,8 @@ class hiweb_file {
             if(!is_string($jsPath) || !file_exists($this->getStr_realPath($jsPath)) || !is_file($jsPath) ){
                 $searchArr = array(
                     hiweb()->getArr_debugBacktrace(0,0,0,0,1,0,2,4),
-                    array_unique(hiweb()->array2()->merge(array('/','/js/','/java/','/javascript/','/javascripts/','/include/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
-                    hiweb()->array2()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
+                    array_unique(hiweb()->array()->merge(array('/','/js/','/java/','/javascript/','/javascripts/','/include/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
+                    hiweb()->array()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
                     array($jsPath, '-'.$jsPath,'script'),
                     array('','.js')
                 );
@@ -163,8 +163,8 @@ class hiweb_file {
         if(!is_string($cssPath) || !file_exists($this->getStr_realPath($cssPath)) || !is_file($cssPath) ){
             $searchArr = array(
                 hiweb()->getArr_debugBacktrace(0,0,0,0,1,0,2,4),
-                array_unique(hiweb()->array2()->merge(array('/','/css/','/style/','/styles/','/template/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
-                hiweb()->array2()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
+                array_unique(hiweb()->array()->merge(array('/','/css/','/style/','/styles/','/template/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
+                hiweb()->array()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
                 array($cssPath, '-'.$cssPath,'style'),
                 array('','.css')
             );
@@ -192,8 +192,8 @@ class hiweb_file {
         if(!file_exists($this->getStr_realPath($filePath)) || !is_file($filePath) ){
             $searchArr = array(
                 hiweb()->getArr_debugBacktrace(0,0,0,0,1,0,2,4),
-                array_unique(hiweb()->array2()->merge(array('/', '/inc/', '/include/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
-                hiweb()->array2()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
+                array_unique(hiweb()->array()->merge(array('/', '/inc/', '/include/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
+                hiweb()->array()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
                 array($filePath, '-'.$filePath),
                 array('','.php')
             );
@@ -265,8 +265,8 @@ class hiweb_file {
         ////Find ASSET in main 'assets' dir and this root plugins dir 'assets' dir
         $dirName = array(
             HIWEB_DIR_ASSET.DIR_SEPARATOR.$slug, //Main DIR
-            hiweb()->plugins()->getStr_pluginRootDir(hiweb()->array2()->getVal(debug_backtrace(),array(0,'file'))).DIR_SEPARATOR.'assets'.DIR_SEPARATOR.$slug, //This parent plugin dir
-            hiweb()->plugins()->getStr_pluginRootDir(hiweb()->array2()->getVal(debug_backtrace(),array(0,'file'))).DIR_SEPARATOR.'assets'.DIR_SEPARATOR.$slug.'.zip', //This parent archive file
+            hiweb()->plugins()->getStr_pluginRootDir(hiweb()->array()->getVal(debug_backtrace(),array(0,'file'))).DIR_SEPARATOR.'assets'.DIR_SEPARATOR.$slug, //This parent plugin dir
+            hiweb()->plugins()->getStr_pluginRootDir(hiweb()->array()->getVal(debug_backtrace(),array(0,'file'))).DIR_SEPARATOR.'assets'.DIR_SEPARATOR.$slug.'.zip', //This parent archive file
             HIWEB_CORE_DIR.DIR_SEPARATOR.'assets'.DIR_SEPARATOR.$slug,
             HIWEB_CORE_DIR.DIR_SEPARATOR.'assets'.DIR_SEPARATOR.$slug.'.zip'
         );
@@ -312,26 +312,26 @@ class hiweb_file {
      * @version 1.0
      */
     public function includeDir($path, $jsMix = array(), $cssMix = array(), $excludeAdminPage = true, $excludeLoginPage = true, $loadInFooter = false){
-        $jsMix = hiweb()->array2()->getArr($jsMix);
-        $cssMix = hiweb()->array2()->getArr($cssMix);
+        $jsMix = hiweb()->array()->getArr($jsMix);
+        $cssMix = hiweb()->array()->getArr($cssMix);
         $files = $this->getArr_directory($path, false, true);
         $inc = array('css'=>array(),'js'=>array());
         $r = array();
         ///
         foreach($files as $path => $file){
-            if( hiweb()->array2()->getVal($file,'extension') != 'css' && hiweb()->array2()->getVal($file,'extension') != 'js' ) continue;
+            if( hiweb()->array()->getVal($file,'extension') != 'css' && hiweb()->array()->getVal($file,'extension') != 'js' ) continue;
             //
             $inc[$file['extension']][$path] = $file;
             if(!hiweb()->string()->isEmpty($cssMix) && $file['extension'] == 'css' &&
                 (
-                    hiweb()->array2()->getBool_empty($cssMix) ||
-                    hiweb()->array2()->strPosArrays(array( basename($path), basename($path, '.css'), dirname($path).DIR_SEPARATOR.basename($path), dirname($path).DIR_SEPARATOR.basename($path,'.css') ), $cssMix) !== false
+                    hiweb()->array()->getBool_empty($cssMix) ||
+                    hiweb()->array()->strPosArrays(array( basename($path), basename($path, '.css'), dirname($path).DIR_SEPARATOR.basename($path), dirname($path).DIR_SEPARATOR.basename($path,'.css') ), $cssMix) !== false
                 )
             ) { $this->css($path);$r[]=$path;}
             if(!hiweb()->string()->isEmpty($jsMix) && $file['extension'] == 'js' &&
                 (
-                    hiweb()->array2()->getBool_empty($jsMix) ||
-                    hiweb()->array2()->strPosArrays(array( basename($path), basename($path, '.js'), dirname($path).DIR_SEPARATOR.basename($path), dirname($path).DIR_SEPARATOR.basename($path,'.js') ), $jsMix) !== false
+                    hiweb()->array()->getBool_empty($jsMix) ||
+                    hiweb()->array()->strPosArrays(array( basename($path), basename($path, '.js'), dirname($path).DIR_SEPARATOR.basename($path), dirname($path).DIR_SEPARATOR.basename($path,'.js') ), $jsMix) !== false
                 )
             ) {$this->js($path,true,$loadInFooter);$r[]=$path;}
         }
@@ -649,9 +649,9 @@ class hiweb_file {
         if(!is_string($filePathOrName) || !file_exists($this->getStr_realPath($filePathOrName)) || !is_file($filePathOrName) ){
             $searchArr = array(
                 hiweb()->getArr_debugBacktrace(0,0,0,0,1,0,2,4),
-                array_unique(hiweb()->array2()->merge(array('/','/tpl/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
-                hiweb()->array2()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
-                hiweb()->array2()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,4,'-')),
+                array_unique(hiweb()->array()->merge(array('/','/tpl/'),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,3,'/','/'))),
+                hiweb()->array()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0)),
+                hiweb()->array()->merge(array(''),hiweb()->getArr_debugBacktrace(1,1,1,1,0,0,2,4,'-')),
                 array($filePathOrName,'-'.$filePathOrName),
                 array('','.tpl')
             );
@@ -662,7 +662,7 @@ class hiweb_file {
         ///
         if( !is_object(hiweb()->tpl()) ) { return file_get_contents($filePathOrName2); }
         ///
-        $params = hiweb()->array2()->merge(hiweb()->globalValues, $params);
+        $params = hiweb()->array()->merge(hiweb()->globalValues, $params);
         if(is_array($params)){ foreach($params as $k => $v){ hiweb()->tpl()->assign($k, $v); } }
         $r = hiweb()->tpl()->fetch($filePathOrName2);
         $r = do_shortcode($r);
@@ -682,7 +682,7 @@ class hiweb_file {
     public function getHtml_fromTplStr($tplStr = '', $params = array()){
         if( !is_object(hiweb()->tpl()) ) { return $tplStr; }
         ///
-        $params = hiweb()->array2()->merge(hiweb()->globalValues, $params);
+        $params = hiweb()->array()->merge(hiweb()->globalValues, $params);
         if(is_array($params)){ foreach($params as $k => $v){ hiweb()->tpl()->assign($k, $v); } }
         $r = do_shortcode(hiweb()->tpl()->fetch('string:'.do_shortcode($tplStr)));
         hiweb()->tpl()->clearAllAssign();
@@ -780,7 +780,7 @@ class hiweb_file {
             $debugTrace = array_merge( hiweb()->getArr_debugBacktrace(0,0,1,0,0,0,2,2,DIR_SEPARATOR),hiweb()->getArr_debugBacktrace(1,1,0,0,0,0,3,3,DIR_SEPARATOR) );
             $searchFile = $this->getStr_pathBySearch(array(
                 array($path,''),
-                array('',dirname( hiweb()->array2()->getVal( debug_backtrace(), array(0,'file') ) )),
+                array('',dirname( hiweb()->array()->getVal( debug_backtrace(), array(0,'file') ) )),
                 array_merge(array(''), $debugTrace),
                 array(DIR_SEPARATOR.$path,'.json','')
             ),1,0);
@@ -788,7 +788,7 @@ class hiweb_file {
         } else {
             if(is_null($path) || !file_exists($path) || !is_file($path) || !$this->getStr_fileExtension($path) == 'json'){
                 $debugTrace = array_merge( hiweb()->getArr_debugBacktrace(0,0,1,0,0,0,2,2,DIR_SEPARATOR),hiweb()->getArr_debugBacktrace(1,1,0,0,0,0,3,3,DIR_SEPARATOR) );
-                $dir = dirname( hiweb()->array2()->getVal( debug_backtrace(), array(0,'file') ) );
+                $dir = dirname( hiweb()->array()->getVal( debug_backtrace(), array(0,'file') ) );
                 $searchPath = $this->getStr_pathBySearch(array( $dir, array_merge($debugTrace,array('')) ),0,1);
                 if(is_string($searchPath)) {
                     if(is_null($path)) { $path = basename($searchPath); }

@@ -135,8 +135,8 @@ class hiweb_plugins {
             $pluginsRepository[$path]['exists'] = isset($plugins[$path]);
             $pluginsRepository[$path]['active'] = false;
             $pluginsRepository[$path]['update'] = false;
-            $pluginsRepository[$path]['group'] = hiweb()->array2()->getVal($pluginsRepository[$path], 'group');
-            $pluginsRepository[$path]['groupArr'] = hiweb()->array2()->explodeTrim(',',$pluginsRepository[$path]['group'],0,1);
+            $pluginsRepository[$path]['group'] = hiweb()->array()->getVal($pluginsRepository[$path], 'group');
+            $pluginsRepository[$path]['groupArr'] = hiweb()->array()->explodeTrim(',',$pluginsRepository[$path]['group'],0,1);
             if($pluginsRepository[$path]['exists']) {
                 $pluginsRepository[$path]['active'] = is_plugin_active($path);
                 $pluginsRepository[$path]['update'] = $plugin['Version'] != $plugins[$path]['Version'] ? $plugin['Version'] : false;
@@ -308,7 +308,7 @@ class hiweb_plugins {
         if(!file_exists(HIWEB_DIR_ASSET.'/'.$slug)) return false;
         if($autoUpdateSize) $dirInfo = hiweb()->file()->getArr_directoryInfo(HIWEB_DIR_ASSET.'/'.$slug);
         else $dirInfo = array('size' => 0, 'sizeF' => 0);
-        $def = hiweb()->array2()->merge($this->defScripts, array(
+        $def = hiweb()->array()->merge($this->defScripts, array(
             'name' => $slug,
             'slug' => $slug,
             'size' => $dirInfo['size'],
@@ -316,7 +316,7 @@ class hiweb_plugins {
         ));
         $infoFile = HIWEB_DIR_ASSET.'/'.$slug.'/'.$slug.'.json';
         if(!file_exists($infoFile)) { if($autoWriteScriptInfoFile) hiweb()->file()->do_varExportToFile($infoFile, $def); }
-        else { $def = hiweb()->array2()->merge($def, hiweb()->file()->getMix_fromJSONFile($infoFile)); }
+        else { $def = hiweb()->array()->merge($def, hiweb()->file()->getMix_fromJSONFile($infoFile)); }
         if($autoUpdateSize) {
             $def['size'] = $dirInfo['size'];
             $def['sizeF'] = $dirInfo['sizeF'];
@@ -330,7 +330,7 @@ class hiweb_plugins {
         if($scriptInfo == false) return false;
         return hiweb()->file()->do_varExportToFile(
             HIWEB_DIR_ASSET.'/'.$slug.'/'.$slug.'.json',
-            hiweb()->array2()->merge($scriptInfo, $arrChange)
+            hiweb()->array()->merge($scriptInfo, $arrChange)
         );
     }
 
@@ -345,7 +345,7 @@ class hiweb_plugins {
         $plugDir = hiweb()->file()->getStr_normalizeDirSeparates( hiweb()->file()->getStr_realPath(WP_PLUGIN_DIR) );
         if(strpos($file,$plugDir)===false) return false;
         ///
-        return $plugDir.DIR_SEPARATOR.hiweb()->array2()->getVal_byIndex(hiweb()->array2()->explodeTrim(DIR_SEPARATOR,str_replace($plugDir,'',$file),0,0),0);
+        return $plugDir.DIR_SEPARATOR.hiweb()->array()->getVal_byIndex(hiweb()->array()->explodeTrim(DIR_SEPARATOR,str_replace($plugDir,'',$file),0,0),0);
     }
 
 

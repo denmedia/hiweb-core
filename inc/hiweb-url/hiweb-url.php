@@ -65,7 +65,7 @@ class hiweb_url {
         ///remove
         foreach($removeKeys as $key => $val){ if(isset($params[$key])) unset($params[$key]); }
         ///
-        return hiweb()->array2()->count($paramsPair) > 0 ? $urlPath.'?'.implode('&',$paramsPair) : $urlPath;
+        return hiweb()->array()->count($paramsPair) > 0 ? $urlPath.'?'.implode('&',$paramsPair) : $urlPath;
     }
 
 

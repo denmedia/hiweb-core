@@ -91,7 +91,7 @@ class hiweb_cpt_type extends hiweb_cpt_meta {
      * @author Matthew Boynes
      */
     public function register_post_type( $customizations = array() ) {
-        $menuIcon = hiweb()->array2()->getVal($customizations,'menu_icon');
+        $menuIcon = hiweb()->array()->getVal($customizations,'menu_icon');
         if(!hiweb()->string()->isEmpty($menuIcon) && strpos($menuIcon,'dashicons-empty') !== 0) {
             $customizations['menu_icon'] = 'dashicons-'; $this->icon_name = $menuIcon;
             $this->set_icon( $menuIcon );

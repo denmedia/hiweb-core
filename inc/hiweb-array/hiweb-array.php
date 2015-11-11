@@ -11,9 +11,7 @@
 class hiweb_array {
 
 
-    public function __construct(){
-        return 'TEST';
-    }
+    public function __construct(){  }
 
 
     /**

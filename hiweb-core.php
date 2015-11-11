@@ -16,25 +16,4 @@ Author URI: http://plugins.hiweb.moscow
 
 
 define('HIWEB_VERSION', '1.4.3.0');
-
-require_once 'inc/hiweb-core.php';
-//require_once 'inc/hiweb-core-define.php';
-
-
-//hiweb()->wp_settings();
-//hiweb()->wizard();
-
-//hiweb()->file()->inc('hiweb-core-plugins');
-
-
-/*if(is_admin()){
-    ////Admin CSS
-    hiweb()->file()->inc('settings');
-    hiweb()->file()->css('hiweb-core');
-    hiweb()->file()->css('hiweb-core-settings/hiweb-core-settings');
-    hiweb()->file()->js('hiweb-core');
-    hiweb()->file()->js('hiweb-core-wp/hiweb-core-wp');
-}*/
-
-
-hiweb()->file();
+require_once 'inc/hiweb-class.php';

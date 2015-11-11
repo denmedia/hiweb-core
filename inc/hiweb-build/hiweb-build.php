@@ -25,7 +25,7 @@ class hiweb_build {
         $count = 0;
         foreach ($tabsArray as $slugName => $tab) {
             ///Slug
-            $slug = is_string($slugName) ? $count : hiweb()->array2()->getValNext($tab, array('slug','name'));
+            $slug = is_string($slugName) ? $count : hiweb()->array()->getValNext($tab, array('slug','name'));
             $slug = trim(hiweb()->string()->getStr_allowSymbols($slug, 15),'-');
             if((string)$slug == '') { hiweb()->console()->error(array('не верные данные табов', $slug),1); return false; }
             ///slug Select

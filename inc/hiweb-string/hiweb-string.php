@@ -24,7 +24,7 @@ class hiweb_string {
     public function getStr_allowSymbols($strText, $limit = 99, $useRegister = false, $ifEmpty_generateRandomKey = true, $additionSymbolsArr = array()){
         $strText = urldecode($strText);
         $r = array();
-        $strtr = hiweb()->array2()->merge(hiweb()->file()->json('allowSymbols.json'), $additionSymbolsArr);
+        $strtr = hiweb()->array()->merge(hiweb()->file()->json('allowSymbols.json'), $additionSymbolsArr);
         $arrText = $this->getArr_fromStr($strText);
         for($n=0;$n < count($arrText) && $n < $limit; $n++){
             $symb = $arrText[$n]; $isUpp = $symb === mb_strtoupper($symb);

@@ -184,12 +184,12 @@ class hiweb_settings {
             $table[$menu[2]] = array(
                 'name' => $menu[0],
                 'rename' => hiweb()->input()->getHtml_field( $idEscape.'_rename', array(
-                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'name')),
+                    'value' => hiweb()->array()->getVal($cMenu, array($menu[2],'name')),
                     'type' => 'text',
                     'tags' => array('data-type'=>'rename', 'placeholder' => 'rename item...')
                 )),
                 'mode' => hiweb()->input()->getHtml_field( $idEscape.'_mode', array(
-                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'mode')),
+                    'value' => hiweb()->array()->getVal($cMenu, array($menu[2],'mode')),
                     'name' => 'Режим пункта: ',
                     'tags' => array('data-type'=>'mode'),
                     'type' => 'select',
@@ -204,7 +204,7 @@ class hiweb_settings {
                         'hide_only_user' => 'Скрывать только пользователям'
                     )) ),
                 'users' => hiweb()->input()->getHtml_field( $idEscape.'_users', array(
-                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'users')),
+                    'value' => hiweb()->array()->getVal($cMenu, array($menu[2],'users')),
                     'name' => 'Пользователи:',
                     'tags' => array('data-type'=>'users'),
                     'type' => 'users',
@@ -217,7 +217,7 @@ class hiweb_settings {
                     )
                 ) ),
                 'roles' => hiweb()->input()->getHtml_field( $idEscape.'_roles', array(
-                    'value' => hiweb()->array2()->getVal($cMenu, array($menu[2],'roles')),
+                    'value' => hiweb()->array()->getVal($cMenu, array($menu[2],'roles')),
                     'name' => 'Роли:',
                     'tags' => array('data-type'=>'roles'),
                     'type' => 'roles',
@@ -247,14 +247,14 @@ class hiweb_settings {
             $cuser = get_current_user_id();
             $crole = hiweb()->wp()->getStr_currentUserRole();
             foreach($menu as $k => $m){
-                $cMenuItem = hiweb()->array2()->getVal($cMenu, $m[2]);
+                $cMenuItem = hiweb()->array()->getVal($cMenu, $m[2]);
                 if(!is_null($cMenuItem)){
-                    $cMenuItemMod = hiweb()->array2()->getVal($cMenuItem,'mode');
-                    $cMenuItemName = hiweb()->array2()->getVal($cMenuItem,'name');
+                    $cMenuItemMod = hiweb()->array()->getVal($cMenuItem,'mode');
+                    $cMenuItemName = hiweb()->array()->getVal($cMenuItem,'name');
                     if(hiweb()->string()->isEmpty($cMenuItemMod)) continue;
                     ///
-                    $userMath = in_array($cuser, hiweb()->array2()->getArr($cMenuItem,'users'));
-                    $roleMath = in_array($crole, hiweb()->array2()->getArr($cMenuItem,'roles'));
+                    $userMath = in_array($cuser, hiweb()->array()->getArr($cMenuItem,'users'));
+                    $roleMath = in_array($crole, hiweb()->array()->getArr($cMenuItem,'roles'));
                     ///
                     switch($cMenuItemMod){
                         case 'show': $show = true; break;

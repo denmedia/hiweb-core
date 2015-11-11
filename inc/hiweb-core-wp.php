@@ -34,7 +34,7 @@ class hiweb_wp {
      */
     public function is_callFromTemplateDir($depth = 1){
         $templateDir = hiweb()->file()->getStr_normalizeDirSeparates(dirname(get_template_directory()));
-        $dbFile = hiweb()->file()->getStr_normalizeDirSeparates(hiweb()->array2()->getVal(debug_backtrace(), array($depth,'file')));
+        $dbFile = hiweb()->file()->getStr_normalizeDirSeparates(hiweb()->array()->getVal(debug_backtrace(), array($depth,'file')));
         return strpos($dbFile,$templateDir) !== false;
     }
 
@@ -517,7 +517,7 @@ class hiweb_wp {
             if(!is_array($tab)) { $tab = array('name' => $slug, 'content' => $tab); }
             elseif(isset($tab[0]) && is_object($tab[0]) && is_string($tab[1])) { $tab = array('name' => $slug, 'content' => $tab[0]->{$tab[1]}()); }
             elseif(isset($tab[0]) && is_array($tab[0]) && isset($tab[0][0]) && is_object($tab[0][0]) && is_string($tab[0][1])) { $tab = array('name' => $slug, 'content' => $tab[0][0]->{$tab[0][1]}( isset($tab[1]) ? $tab[1] : null )); }
-            $tab = hiweb()->array2()->merge($defTab, $tab);
+            $tab = hiweb()->array()->merge($defTab, $tab);
             ///Slug
             $slug = trim($slug) == '' ? count($rTabs) - 1 : $slug;
             $slug = trim($tab['slug']) == '' ? hiweb()->string()->getStr_allowSymbols($tab['name']) : $tab['slug'];
