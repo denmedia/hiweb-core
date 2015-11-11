@@ -11,6 +11,11 @@
 class hiweb_array {
 
 
+    public function __construct(){
+        return 'TEST';
+    }
+
+
     /**
      * Возвращает массив, соединенный из двух массивов
      * @param $array1

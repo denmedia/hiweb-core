@@ -9,7 +9,14 @@
 
 function hiweb(){ static $hiweb = null; if(is_null($hiweb)) $hiweb = new hiweb(); return $hiweb; }
 
-
+/**
+ * @method hiweb_array array() array() Подключение субКласса hiweb_array
+ * @method hiweb_string string() string() Подключение субКласса hiweb_string
+ * @method hiweb_file file() file() Подключение субКласса hiweb_file
+ * @method hiweb_url url() url() Подключение субКласса hiweb_url
+ * @method hiweb_build build() build() Подключение субКласса hiweb_build
+ * Class hiweb
+ */
 class hiweb {
 
     public $globalValues = array();
@@ -22,26 +29,118 @@ class hiweb {
     private $_cacheByFileEnable = true;
     private $_cacheByFileName = 'cacheByFile.json';
 
+    public $arr_subClasses = array();
+
     function __construct(){
         if(defined('HIWEB_DIR_CACHE') && !file_exists(HIWEB_DIR_CACHE)) mkdir(HIWEB_DIR_CACHE, 0644);
     }
 
 
+    function __call($method, $params = array()){
+        //subClassName проверка и подключение субКласса
+        if(file_exists($this->getStr_subClassFile($method))) { return $this->connect($method, false, $params); }
+        else {
+            $parentTrace = next(debug_backtrace());
+            return new hiwebSubClassError($parentTrace['class'].$parentTrace['type'].$parentTrace['function'].'()');
+        }
+    }
+
+    private function emptyCall($method,$params){ return new hiwebSubClassError($method,$params); }
+
+
+    /**
+     * Подключить субкласс hiweb
+     * @param null $subClassName
+     * @param bool $newInstance
+     * @param array $params
+     * @return mixed
+     * @version 2
+     */
+    private function connect($subClassName, $newInstance = false, $params = array()){
+        $subClassName = $this->getStr_subClassName($subClassName);
+        $includePath = $this->getStr_subClassFile($subClassName);
+        if($newInstance){
+            //TODO написать
+        } else {
+            if(isset($this->arr_subClasses[$subClassName])) {
+                $last = end($this->arr_subClasses[$subClassName]);
+                $lastKey = key($this->arr_subClasses[$subClassName]);
+                $this->arr_subClasses[$subClassName][$lastKey]['query'][] = $this->getArr_debugBacktrace_formatted(2, 1);
+                return $last['instance'];
+            }
+            else {
+                ///Создание лога
+                $connect = array(
+                    'classFile' => $includePath,
+                    'classFile_exists' => null,
+                    'instance' => null,
+                    'query' => array($this->getArr_debugBacktrace_formatted(2, 1))
+                );
+                ///Проверка файла
+                if(file_exists($includePath)) {
+                    include_once($includePath);
+                    $connect['classFile_exists'] = 1;
+                } else {
+                    $connect['instance'] = false;
+                    $connect['classFile_exists'] = 0;
+                }
+                ///Подключение класса
+                if(class_exists($subClassName)){ $connect['instance'] = new $subClassName($params); }
+                $this->arr_subClasses[$subClassName][] = $connect;
+                return $connect['instance'];
+            }
+        }
+        /*if(is_null($className) || empty($className)) { $className = hiweb()->array2()->getVal($this->getArr_debugBacktrace(0,1,0,0,0,0,3,3),0,'class'); }
+        if($newInstance){
+            $php = dirname(__FILE__).'/hiweb-core-'.$className.'.php';
+            if(file_exists($php)) { require_once $php; $className = 'hiweb_'.$className; return new $className(); } else { hiweb()->console()->error('файл ['.$php.'] не найден.',1); return null; }
+        } else {
+            static $class = array();
+            $php = dirname(__FILE__).'/hiweb-core-'.$className.'.php'; $className = 'hiweb_'.$className;
+            if(!is_object($this->array2()->getVal($class, $className, null)) && file_exists($php)) { require_once $php; $class[$className] = new $className(); }
+            elseif(!is_object($this->array2()->getVal($class, $className, null)) && !file_exists($php)) { hiweb()->console()->error('файл или класс ['.$className.'] не найден!',1); return null; }
+            return $this->array2()->getVal($class, $className, null);
+        }*/
+    }
+
+    private function getStr_subClassName($subClassName){
+        if(strpos($subClassName,'hiweb_') === 0) return $subClassName;
+        else return 'hiweb_'.$subClassName;
+    }
+
+    private function getStr_subClassFile($subClassName){
+        $subClassName = $this->getStr_subClassName($subClassName);
+        $fileName = str_replace('_','-',$subClassName);
+        return str_replace('\\','/', dirname(__FILE__).'/'.$fileName.'/'.$fileName.'.php');
+    }
+
+    /**
+     * Возвращает массив родительских файлов и функций, которые вызвали выполнение данной функции. Значения массива : 'файл : строка : функция'
+     * @param int $depth - количество родителей, которые необходимо пропустить
+     * @return array
+     */
+    public function getArr_debugBacktrace_formatted($depth = 0, $maxLines = 5, $includePath = true, $includeFile = true, $includeLine = true, $includeFunction = true){
+        $debug_backtrace = array();
+        $depth ++;
+        if(function_exists('debug_backtrace')) { $debug_backtrace = debug_backtrace(); }
+        $r = array();
+        foreach($debug_backtrace as $n => $node) {
+            if($n < $depth || $maxLines <= 0) {continue;}
+            //Construkt line
+            $line = Array();
+            $filePath = str_replace($_SERVER['DOCUMENT_ROOT'],'', str_replace('\\','/', $node['file']));
+            if( $includePath && $includeFile ){ $line[] = $filePath; }
+            elseif( $includePath && !$includeFile ) { $line[] = dirname($filePath); }
+            elseif( !$includePath && $includeFile ) { $line[] = basename($filePath); }
+            if($includeLine) { $line[] = $node['line']; }
+            if($includeFunction) { $line[] = ( isset($node['class']) ? $node['class'].$node['type'] : '' ).$node['function']."()"; }
+            $r[] = implode(' : ',$line);
+            $maxLines --;}
+        return array_reverse($r);
+    }
+
+
 ////////////////////////////////////////////////////
-
-    /**
-     * Подключение класса FILE
-     * @return hiweb_file
-     */
-    public function file(){ return $this->connect(); }
-
-
-    /**
-     * Подключение класса STRING
-     * @return hiweb_string
-     */
-    public function string(){ return $this->connect(); }
-
 
     /**
      * Подключение класса INPUT
@@ -54,11 +153,11 @@ class hiweb {
      * Подключение класса ARRAY
      * @return hiweb_array
      */
-    public function array2(){
+    /*public function array2(){
         static $class = null;
         if(!is_object($class) && file_exists(dirname(__FILE__).'/hiweb-core-array.php')) { require_once dirname(__FILE__).'/hiweb-core-array.php'; $class = new hiweb_array(); }
         return $class;
-    }
+    }*/
 
     /**
      * Подключение класса CURL
@@ -189,45 +288,6 @@ class hiweb {
      */
     public function wizard(){
         return $this->connect();
-    }
-
-
-    /**
-     * @return hiweb_build
-     */
-    public function build(){
-        return $this->connect();
-    }
-
-
-    /**
-     * @return hiweb_url
-     */
-    public function url(){
-        return $this->connect();
-    }
-
-
-    /**
-     * Подключить корневой класс hiweb
-     * @param null $className
-     * @param bool $newInstance
-     * @return mixed
-     *
-     * @version 1.2
-     */
-    private function connect($className = null, $newInstance = false){
-        if(is_null($className) || empty($className)) { $className = hiweb()->array2()->getVal($this->getArr_debugBacktrace(0,1,0,0,0,0,3,3),0,'class'); }
-        if($newInstance){
-            $php = dirname(__FILE__).'/hiweb-core-'.$className.'.php';
-            if(file_exists($php)) { require_once $php; $className = 'hiweb_'.$className; return new $className(); } else { hiweb()->console()->error('файл ['.$php.'] не найден.',1); return null; }
-        } else {
-            static $class = array();
-            $php = dirname(__FILE__).'/hiweb-core-'.$className.'.php'; $className = 'hiweb_'.$className;
-            if(!is_object($this->array2()->getVal($class, $className, null)) && file_exists($php)) { require_once $php; $class[$className] = new $className(); }
-            elseif(!is_object($this->array2()->getVal($class, $className, null)) && !file_exists($php)) { hiweb()->console()->error('файл или класс ['.$className.'] не найден!',1); return null; }
-            return $this->array2()->getVal($class, $className, null);
-        }
     }
 
 
@@ -726,5 +786,27 @@ class hiweb {
 
 
 
+
+}
+
+
+class hiwebSubClassError{
+    public $parentCall = null;
+    public $nextCall = null;
+    public $backTrace = '';
+
+    public function __construct($parentCall){
+        $this->backTrace = end(hiweb()->getArr_debugBacktrace_formatted(1,1,1,1,1,0));
+        $this->parentCall = $parentCall; return $this;
+    }
+
+    public function __call($method,$params){
+        $this->nextCall = $method.'()';
+        return new hiwebSubClassError($this->parentCall.'->'.$method.'()');
+    }
+
+    public function __destruct(){
+        if(is_null($this->nextCall)) { $error = 'Вызов несуществущего метода: '.$this->parentCall.' - '.$this->backTrace; echo $error; }
+    }
 
 }
