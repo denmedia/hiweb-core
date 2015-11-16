@@ -52,7 +52,7 @@ class hiweb_curl {
         if(self::$useCache && file_exists($fileCache)){
             $r = hiweb()->file()->getMix_fromJSONFile($fileCache);
         } else {
-            if(function_exists('curl')){
+            if($this->curl_enable()) {
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_HEADER, true);
@@ -78,16 +78,17 @@ class hiweb_curl {
                 $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
                 curl_close($ch);
             } else {
-                $opts = array(
-                    'http'=>array(
-                        'method'=>"GET",
-                        'header'=>"Accept-language: en\r\n" .
-                            "Cookie: foo=bar\r\n"
-                    )
-                );
-                $context = stream_context_create($opts);
+                $context = stream_context_create(array(
+                    'http' => array(
+                        'method' => 'POST',
+                        'header' => "User-Agent: " . $_SERVER['HTTP_USER_AGENT'] . PHP_EOL
+                            . "Expect:" . PHP_EOL,
+                        'content' => '',
+                    ),
+                ));
+
                 $response = file_get_contents($url, false, $context);
-                //TODO: Заваершить функцию
+                $header_size = 0;
             }
             if(!$response) { return false; }
             $headerArr = self::getArr_headersFromCurl(substr($response, 0, $header_size));
@@ -132,29 +133,47 @@ class hiweb_curl {
         //$fileCache = BASE_DIR.DIR_SEPARATOR.self::$cacheDir.DIR_SEPARATOR.hiweb()->string()->getStr_allowSymbols($url).self::$cacheFileExtension;
         $urlParse = parse_url($url);
         ////
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-        curl_setopt($ch, CURLOPT_REFERER, 'https://'.$urlParse['host'].'/index.php');
-        curl_setopt($ch, CURLOPT_COOKIEFILE, self::$cookieFile);
-        curl_setopt($ch, CURLOPT_COOKIEJAR, self::$cookieFile);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
-        if(is_array($postData) || is_string($postData)) {
-            $postData = (is_array($postData)) ? http_build_query($postData) : $postData;
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+        if(is_array($postData)) {
+            $postData = http_build_query($postData);
         }
-        //curl_setopt($ch, CURLOPT_VERBOSE, true);
-        //curl_setopt($ch, CURLOPT_POST, 1);
-        //curl_setopt($ch, CURLOPT_NOBODY,true);
-        //curl_setopt($ch, CURLOPT_POSTFIELDS, base::get_strParam($postData));
-        //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        //
-        $response = curl_exec($ch);
-        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        curl_close($ch);
+
+        if($this->curl_enable()) {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, true);
+            curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+            curl_setopt($ch, CURLOPT_REFERER, 'https://'.$urlParse['host'].'/index.php');
+            curl_setopt($ch, CURLOPT_COOKIEFILE, self::$cookieFile);
+            curl_setopt($ch, CURLOPT_COOKIEJAR, self::$cookieFile);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
+            if(is_string($postData)) {
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+            }
+            //curl_setopt($ch, CURLOPT_VERBOSE, true);
+            //curl_setopt($ch, CURLOPT_POST, 1);
+            //curl_setopt($ch, CURLOPT_NOBODY,true);
+            //curl_setopt($ch, CURLOPT_POSTFIELDS, base::get_strParam($postData));
+            //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            //
+            $response = curl_exec($ch);
+            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+            curl_close($ch);
+        } else {
+            $context = stream_context_create(array(
+                'http' => array(
+                    'method' => 'POST',
+                    'header' => "User-Agent: " . $_SERVER['HTTP_USER_AGENT'] . PHP_EOL
+                        . "Expect:" . PHP_EOL,
+                    'content' => is_string($postData) ? $postData : '',
+                ),
+            ));
+
+            $response = file_get_contents($url, false, $context);
+            $header_size = 0;
+        }
         if(!$response) { return false; }
         $headerArr = $this->getArr_headersFromCurl(substr($response, 0, $header_size));
         ///Redirect Way
@@ -176,6 +195,14 @@ class hiweb_curl {
         );
         ////
         return $r;
+    }
+
+    /**
+     * Проверка доступности модуля curl
+     * @return bool
+     */
+    function curl_enable() {
+        return function_exists('curl_version');
     }
 
 
