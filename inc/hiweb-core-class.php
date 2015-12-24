@@ -533,8 +533,7 @@ class hiweb {
         }
         $r = '';
         foreach(array_reverse($dirs) as $dir){
-            //TODO добавить проверку прав на файл
-            if(!file_exists($dir.DIR_SEPARATOR.'index.php') || !is_file($dir.DIR_SEPARATOR.'index.php')) return $r;
+            if(!@is_readable($dir.DIR_SEPARATOR.'index.php') || !is_file($dir.DIR_SEPARATOR.'index.php')) return $r;
             $r = $dir;
         }
         return $this->cache($r);
