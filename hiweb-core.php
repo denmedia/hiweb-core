@@ -35,5 +35,3 @@ if(is_admin()){
     hiweb()->file()->js('hiweb-core');
     hiweb()->file()->js('hiweb-core-wp/hiweb-core-wp');
 }
-
-    hiweb()->console( BASE_DIR );
