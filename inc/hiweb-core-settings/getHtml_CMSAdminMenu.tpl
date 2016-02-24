@@ -33,5 +33,5 @@
 
 <p>
     <button class="button button-primary" id="hiweb-core-settings-adminmenu-submit">{lang}Сохранить изменения{/lang}</button>
-<div id="hiweb-core-settings-adminmenu-done">{lang}Все изменения сохранены!{/lang}</div>
+<div id="hiweb-core-settings-adminmenu-done-2">{lang}Все изменения сохранены!{/lang}</div>
 </p>

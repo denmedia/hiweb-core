@@ -9,13 +9,13 @@
 Plugin Name: hiWeb Core
 Plugin URI: http://plugins.hiweb.moscow/core
 Description: This plug-in allows for the creators of WordPress sites to quickly and easily incorporate all the most standard features menu control widgets to customize the admin panel, delete or rename the menu items more convenient and simple. Just plug-in allows you to create your own repository of plug-ins and additional scripts, which will be useful for any developer sites.
-Version: 1.4.3.0
+Version: 1.4.4.0
 Author: Den Media
 Author URI: http://plugins.hiweb.moscow
 */
 
 
-define('HIWEB_VERSION', '1.4.3.0');
+define('HIWEB_VERSION', '1.4.4.0');
 
 require_once 'inc/hiweb-core-class.php';
 require_once 'inc/hiweb-core-define.php';
@@ -35,3 +35,5 @@ if(is_admin()){
     hiweb()->file()->js('hiweb-core');
     hiweb()->file()->js('hiweb-core-wp/hiweb-core-wp');
 }
+
+    hiweb()->console( BASE_DIR );

@@ -137,11 +137,13 @@ class hiweb_file {
      * @param $cssPath
      *
      * @return bool
+     *
+     * @vrsion 1.1
      */
     public function css($cssPath = ''){
         $cssURL = $this->getStr_cssUrl($cssPath);
         if(!$cssURL) { hiweb()->console()->error('Файл ['.$cssPath.'] не найден!',1); return false; }
-        $handle = hiweb()->string()->getStr_allowSymbols(basename($cssURL));
+        $handle = hiweb()->string()->getStr_allowSymbols($cssURL);
         $this->_css[$handle] = array(
             'path' => $cssPath,
             'url' => $cssURL

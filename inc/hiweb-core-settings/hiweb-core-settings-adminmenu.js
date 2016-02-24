@@ -79,11 +79,10 @@ jQuery(document).ready(function(){
             data: {data:hiweb_core_settings_adminmenu_data},
             success: function(data){
                 jQuery('#hiweb-core-settings-adminmenu-submit').hide();
-                jQuery('#hiweb-core-settings-adminmenu-done').fadeIn();
+                jQuery('#hiweb-core-settings-adminmenu-done, #hiweb-core-settings-adminmenu-done-2').fadeIn();
                 setTimeout(function(){
-                    jQuery('#hiweb-core-settings-adminmenu-submit').removeClass('button-disabled').removeAttr('disable');
-                    jQuery('#hiweb-core-settings-adminmenu-submit').fadeIn();
-                    jQuery('#hiweb-core-settings-adminmenu-done').hide();
+                    jQuery('#hiweb-core-settings-adminmenu-submit').removeClass('button-disabled').removeAttr('disable').fadeIn();
+                    jQuery('#hiweb-core-settings-adminmenu-done, #hiweb-core-settings-adminmenu-done-2').hide();
                 }, 2500);
             },
             error: function(data){ console.error(data); }

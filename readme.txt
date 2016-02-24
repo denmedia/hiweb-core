@@ -94,6 +94,12 @@ No questions...
 5. API: hiweb()->file() some functions
 
 == Changelog ==
+= 1.4.4.0 =
+fix basedir autolocate, curl alternative
+
+
+= 1.4.3.2 =
+fix some errors and bugs...
 
 = 1.4.1.3 =
 hiweb()->wp()->isLoginPage() fix
