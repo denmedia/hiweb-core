@@ -983,12 +983,12 @@
 		 *
 		 * @return string
 		 *
-		 * @version 1.2
+		 * @version 1.3
 		 */
 		public function getStr_baseDir() {
 			if( $this->cacheExists() ) return $this->cache();
 			$dirs = array( $this->file()->getStr_normalizeDirSeparates( dirname( $_SERVER[ 'DOCUMENT_ROOT' ] ), 1 ) );
-			foreach( explode( DIR_SEPARATOR, str_replace( $this->file()->getStr_normalizeDirSeparates( dirname( $_SERVER[ 'DOCUMENT_ROOT' ] ) ), '', $this->file()->getStr_normalizeDirSeparates( dirname( $_SERVER[ 'SCRIPT_FILENAME' ] ) ) ) ) as $dir ) {
+			foreach( explode( DIR_SEPARATOR, str_replace( $this->file()->getStr_normalizeDirSeparates( dirname( $_SERVER[ 'DOCUMENT_ROOT' ] ) ), '', $this->file()->getStr_normalizeDirSeparates(  $_SERVER[ 'DOCUMENT_ROOT' ] ) ) ) as $dir ) {
 				if( trim( $dir ) == '' ) continue;
 				$dirs[] = end( $dirs ) . DIR_SEPARATOR . $dir;
 			}

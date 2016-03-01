@@ -94,6 +94,9 @@ No questions...
 5. API: hiweb()->file() some functions
 
 == Changelog ==
+= 1.4.4.1 =
+fix basedir www-prefix autodetect
+
 = 1.4.4.0 =
 fix basedir autolocate, curl alternative
 
